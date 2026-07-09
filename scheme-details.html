@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+
+Scheme Details | Smart Bharat Assistant
+
+</title>
+
+<link rel="stylesheet"
+href="style.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- Progress -->
+
+    <div class="progress-container">
+
+        <div class="progress-step active">
+
+            <div class="circle">
+
+                <i class="fa-solid fa-list-check"></i>
+
+            </div>
+
+            <span>Select Scheme</span>
+
+        </div>
+
+        <div class="progress-line"></div>
+
+        <div class="progress-step active">
+
+            <div class="circle">
+
+                <i class="fa-solid fa-file-lines"></i>
+
+            </div>
+
+            <span>View Details</span>
+
+        </div>
+
+        <div class="progress-line"></div>
+
+        <div class="progress-step">
+
+            <div class="circle">
+
+                <i class="fa-solid fa-paper-plane"></i>
+
+            </div>
+
+            <span>Apply</span>
+
+        </div>
+
+    </div>
+
+    <!-- Header -->
+
+    <div class="page-header">
+
+        <div>
+
+            <h1>
+
+                <i class="fa-solid fa-file-lines"></i>
+
+                Scheme Details
+
+            </h1>
+
+            <p>
+
+                Review the complete information before submitting your application.
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- Main Card -->
+
+    <div class="scheme-details-card">
+
+        <!-- Scheme Name -->
+
+        <div class="scheme-title-box">
+
+            <i class="fa-solid fa-landmark"></i>
+
+            <h2 id="schemeTitle">
+
+                Scheme Name
+
+            </h2>
+
+        </div>
+
+        <!-- Highlights -->
+
+        <div class="feature-grid">
+
+            <div class="feature-card">
+
+                <i class="fa-solid fa-shield-halved"></i>
+
+                Government Verified
+
+            </div>
+
+            <div class="feature-card">
+
+                <i class="fa-solid fa-circle-check"></i>
+
+                Online Application
+
+            </div>
+
+            <div class="feature-card">
+
+                <i class="fa-solid fa-clock"></i>
+
+                Fast Processing
+
+            </div>
+
+            <div class="feature-card">
+
+                <i class="fa-solid fa-file-circle-check"></i>
+
+                Secure Approval
+
+            </div>
+
+        </div>
+
+        <!-- Description -->
+
+        <div class="details-section">
+
+            <h3>
+
+                <i class="fa-solid fa-circle-info"></i>
+
+                Scheme Description
+
+            </h3>
+
+            <p id="schemeDescription"></p>
+
+        </div>
+
+        <!-- Eligibility -->
+
+        <div class="details-section">
+
+            <h3>
+
+                <i class="fa-solid fa-user-check"></i>
+
+                Eligibility Criteria
+
+            </h3>
+
+            <p id="schemeEligibility"></p>
+
+        </div>
+
+        <!-- Documents -->
+
+        <div class="details-section">
+
+            <h3>
+
+                <i class="fa-solid fa-folder-open"></i>
+
+                Required Documents
+
+            </h3>
+
+            <ul id="schemeDocuments"></ul>
+
+        </div>
+
+        <!-- Information Box -->
+
+        <div class="info-box">
+
+            <i class="fa-solid fa-circle-info"></i>
+
+            Please verify all eligibility criteria and required documents before applying for this scheme.
+
+        </div>
+
+        <!-- Buttons -->
+
+        <div class="action-buttons">
+
+            <button
+            class="primary-btn"
+            onclick="goApply()">
+
+                <i class="fa-solid fa-paper-plane"></i>
+
+                Apply Now
+
+            </button>
+
+            <button
+            class="back-btn"
+            onclick="window.location.href='dashboard.html'">
+
+                <i class="fa-solid fa-arrow-left"></i>
+
+                Back to Dashboard
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
+<script>
+
+loadSchemeDetails();
+
+if(localStorage.getItem("theme")==="dark"){
+
+document.body.classList.add("dark-mode");
+
+}
+
+</script>
+
+<!-- Toast -->
+
+<div id="toast" class="toast">
+
+<span id="toastIcon">✔</span>
+
+<p id="toastMessage">
+
+Success
+
+</p>
+
+</div>
+
+</body>
+
+</html>

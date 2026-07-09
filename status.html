@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+
+Application Status | Smart Bharat Assistant
+
+</title>
+
+<link rel="stylesheet"
+href="style.css">
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="status-page">
+
+<div class="status-bg">
+
+<div class="blob one"></div>
+
+<div class="blob two"></div>
+
+<div class="blob three"></div>
+
+</div>
+
+<header class="status-navbar">
+
+<div class="status-logo">
+
+<img
+src="images/emblem.png"
+alt="Government Logo">
+
+<div>
+
+<h2>
+
+Smart Bharat Assistant
+
+</h2>
+
+<span>
+
+Application Tracking Portal
+
+</span>
+
+</div>
+
+</div>
+
+<button
+class="secondary-btn"
+onclick="window.location.href='dashboard.html'">
+
+<i class="fa-solid fa-arrow-left"></i>
+
+Dashboard
+
+</button>
+
+</header>
+
+<section class="status-hero">
+
+<div class="status-icon">
+
+<i class="fa-solid fa-file-circle-check"></i>
+
+</div>
+
+<h1>
+
+Application Status
+
+</h1>
+
+<p>
+
+Track all your Government Scheme applications,
+check approval status and download your
+application report.
+
+</p>
+
+</section>
+
+<section class="status-section">
+
+<div class="status-card">
+
+<div class="status-header">
+
+<h2>
+
+<i class="fa-solid fa-chart-line"></i>
+
+Application Dashboard
+
+</h2>
+
+<p>
+
+View and manage all submitted applications.
+
+</p>
+
+</div>
+
+<div class="status-summary">
+
+<div class="summary-card">
+
+<div class="summary-icon">
+
+<i class="fa-solid fa-folder-open"></i>
+
+</div>
+
+<div>
+
+<h3>
+
+Total Applications
+
+</h3>
+
+<h1 id="totalApplications">
+
+0
+
+</h1>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="status-search">
+
+<input
+
+type="text"
+
+id="searchStatus"
+
+placeholder="Search Scheme Name..."
+
+onkeyup="filterStatus()">
+
+</div>
+
+<div class="table-wrapper">
+
+<table class="admin-table">
+
+<thead>
+
+<tr>
+
+<th>S.No</th>
+
+<th>Application ID</th>
+
+<th>Applicant</th>
+
+<th>Scheme</th>
+
+<th>Status</th>
+
+<th>Download</th>
+
+</tr>
+
+</thead>
+
+<tbody id="statusTable">
+
+    </tbody>
+
+</table>
+
+</div>
+
+<div class="status-actions">
+
+<button
+class="secondary-btn"
+onclick="window.location.href='dashboard.html'">
+
+<i class="fa-solid fa-arrow-left"></i>
+
+Back to Dashboard
+
+</button>
+
+<button
+class="logout-btn"
+onclick="logout()">
+
+<i class="fa-solid fa-right-from-bracket"></i>
+
+Logout
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+<footer class="status-footer">
+
+<p>
+
+© 2026 Smart Bharat Assistant |
+Smart India Hackathon Project
+
+</p>
+
+</footer>
+
+</div>
+
+<script src="script.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<script>
+
+/* Login Check */
+
+if(!localStorage.getItem("email")){
+
+alert("Please Login First");
+
+window.location.href="login.html";
+
+}
+else{
+
+loadStatus();
+
+}
+
+/* Dark Mode */
+
+if(localStorage.getItem("theme")==="true"){
+
+document.body.classList.add("dark-mode");
+
+}
+
+/* Search */
+
+function filterStatus(){
+
+let input=
+document.getElementById("searchStatus")
+.value.toLowerCase();
+
+let rows=
+document.querySelectorAll("#statusTable tr");
+
+rows.forEach(row=>{
+
+if(row.innerText
+.toLowerCase()
+.includes(input)){
+
+row.style.display="";
+
+}
+
+else{
+
+row.style.display="none";
+
+}
+
+});
+
+}
+
+</script>
+
+<!-- Toast Notification -->
+
+<div id="toast" class="toast">
+
+<span id="toastIcon">✔</span>
+
+<p id="toastMessage">
+
+Success
+
+</p>
+
+</div>
+
+</body>
+
+</html>

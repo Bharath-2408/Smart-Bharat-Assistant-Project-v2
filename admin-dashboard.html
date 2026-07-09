@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+
+Admin Dashboard | Smart Bharat Assistant
+
+</title>
+
+<link rel="stylesheet"
+href="style.css">
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="admin-page">
+
+<div class="admin-bg">
+
+<div class="blob one"></div>
+
+<div class="blob two"></div>
+
+<div class="blob three"></div>
+
+</div>
+
+<header class="admin-navbar">
+
+<div class="admin-logo">
+
+<img
+src="images/emblem.png"
+alt="Government Logo">
+
+<div>
+
+<h2>
+
+Smart Bharat Assistant
+
+</h2>
+
+<span>
+
+Administrator Control Panel
+
+</span>
+
+</div>
+
+</div>
+
+<button
+
+class="secondary-btn"
+
+onclick="window.location.href='index.html'">
+
+<i class="fa-solid fa-house"></i>
+
+Home
+
+</button>
+
+</header>
+
+<section class="admin-hero">
+
+<div class="admin-icon">
+
+<i class="fa-solid fa-user-shield"></i>
+
+</div>
+
+<h1>
+
+Admin Dashboard
+
+</h1>
+
+<p>
+
+Manage citizen applications, approve or reject requests,
+monitor statistics and efficiently administer Government
+scheme submissions.
+
+</p>
+
+</section>
+
+<section class="admin-section">
+
+<div class="admin-card">
+
+<div class="admin-header">
+
+<h2>
+
+<i class="fa-solid fa-chart-column"></i>
+
+Application Analytics
+
+</h2>
+
+<p>
+
+Real-time overview of all submitted applications.
+
+</p>
+
+</div>
+
+<div class="admin-stats">
+
+<div class="stat-box total">
+
+<div class="stat-icon">
+
+<i class="fa-solid fa-folder-open"></i>
+
+</div>
+
+<div>
+
+<h3>
+
+Total Applications
+
+</h3>
+
+<h1 id="totalCount">
+
+0
+
+</h1>
+
+</div>
+
+</div>
+
+<div class="stat-box pending">
+
+<div class="stat-icon">
+
+<i class="fa-solid fa-hourglass-half"></i>
+
+</div>
+
+<div>
+
+<h3>
+
+Pending
+
+</h3>
+
+<h1 id="pendingCount">
+
+0
+
+</h1>
+
+</div>
+
+</div>
+
+<div class="stat-box approved">
+
+<div class="stat-icon">
+
+<i class="fa-solid fa-circle-check"></i>
+
+</div>
+
+<div>
+
+<h3>
+
+Approved
+
+</h3>
+
+<h1 id="approvedCount">
+
+0
+
+</h1>
+
+</div>
+
+</div>
+
+<div class="stat-box rejected">
+
+<div class="stat-icon">
+
+<i class="fa-solid fa-circle-xmark"></i>
+
+</div>
+
+<div>
+
+<h3>
+
+Rejected
+
+</h3>
+
+<h1 id="rejectedCount">
+
+0
+
+</h1>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="admin-tools">
+
+<input
+
+type="text"
+
+id="searchInput"
+
+placeholder="Search Applicant or Scheme..."
+
+onkeyup="searchApplications()">
+
+<select
+
+id="statusFilter"
+
+onchange="filterApplications()">
+
+<option value="All">
+
+All Applications
+
+</option>
+
+<option value="Pending">
+
+Pending
+
+</option>
+
+<option value="Approved">
+
+Approved
+
+</option>
+
+<option value="Rejected">
+
+Rejected
+
+</option>
+
+</select>
+
+</div>
+
+<div class="table-wrapper">
+
+<table class="admin-table">
+
+<thead>
+
+<tr>
+
+<th>SI No</th>
+
+<th>ID</th>
+
+<th>Applicant</th>
+
+<th>Aadhaar</th>
+
+<th>Address</th>
+
+<th>Scheme</th>
+
+<th>Status</th>
+
+<th>Actions</th>
+
+<th>Download</th>
+
+</tr>
+
+</thead>
+
+<tbody id="applicationTable">
+
+</tbody>
+
+</table>
+
+</div>
+
+<div class="admin-actions">
+
+<button
+class="secondary-btn"
+onclick="window.location.href='index.html'">
+
+<i class="fa-solid fa-house"></i>
+
+Home
+
+</button>
+
+<button
+class="logout-btn"
+onclick="logout()">
+
+<i class="fa-solid fa-right-from-bracket"></i>
+
+Logout
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+<footer class="admin-footer">
+
+<p>
+
+© 2026 Smart Bharat Assistant |
+Smart India Hackathon Project
+
+</p>
+
+</footer>
+
+</div>
+
+<script src="script.js"></script>
+
+<script>
+
+/* ==========================
+   ADMIN LOGIN CHECK
+========================== */
+
+if(!localStorage.getItem("admin")){
+
+alert("Please login as Admin");
+
+window.location.href="admin-login.html";
+
+}
+
+/* ==========================
+   LOAD DATA
+========================== */
+
+window.onload=function(){
+
+loadApplications();
+
+loadStatistics();
+
+};
+
+/* ==========================
+   SEARCH APPLICATIONS
+========================== */
+
+function searchApplications(){
+
+let input=
+document.getElementById("searchInput")
+.value
+.toLowerCase();
+
+let rows=
+document.querySelectorAll("#applicationTable tr");
+
+rows.forEach(row=>{
+
+let text=row.innerText.toLowerCase();
+
+if(text.includes(input)){
+
+row.style.display="";
+
+}
+
+else{
+
+row.style.display="none";
+
+}
+
+});
+
+}
+
+/* ==========================
+   FILTER APPLICATIONS
+========================== */
+
+function filterApplications(){
+
+let filterValue=
+document.getElementById("statusFilter")
+.value
+.toLowerCase();
+
+let rows=
+document.querySelectorAll("#applicationTable tr");
+
+rows.forEach(row=>{
+
+let status=
+row.cells[6]?.innerText
+.trim()
+.toLowerCase();
+
+if(
+
+filterValue==="all" ||
+
+status===filterValue
+
+){
+
+row.style.display="";
+
+}
+
+else{
+
+row.style.display="none";
+
+}
+
+});
+
+}
+
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<!-- Toast Notification -->
+
+<div id="toast" class="toast">
+
+<span id="toastIcon">✔</span>
+
+<p id="toastMessage">
+
+Success
+
+</p>
+
+</div>
+
+</body>
+
+</html>

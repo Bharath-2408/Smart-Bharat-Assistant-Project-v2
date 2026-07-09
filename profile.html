@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+
+My Profile | Smart Bharat Assistant
+
+</title>
+
+<link rel="stylesheet"
+href="style.css">
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="profile-page">
+
+<div class="profile-bg">
+
+<div class="blob one"></div>
+
+<div class="blob two"></div>
+
+<div class="blob three"></div>
+
+</div>
+
+<header class="profile-navbar">
+
+<div class="profile-logo">
+
+<img
+src="images/emblem.png"
+alt="Government">
+
+<div>
+
+<h2>
+
+Smart Bharat
+
+</h2>
+
+<span>
+
+Citizen Profile
+
+</span>
+
+</div>
+
+</div>
+
+<button
+class="status-btn"
+onclick="window.location.href='dashboard.html'">
+
+<i class="fa-solid fa-arrow-left"></i>
+
+Dashboard
+
+</button>
+
+</header>
+
+<section class="profile-hero">
+
+<div class="profile-avatar">
+
+<i class="fa-solid fa-user"></i>
+
+</div>
+
+<h1>
+
+My Profile
+
+</h1>
+
+<p>
+
+Manage your Smart Bharat account,
+update personal information,
+change password and keep your
+citizen profile secure.
+
+</p>
+
+</section>
+
+<section class="profile-section">
+
+<div class="profile-card">
+
+<div class="profile-card-header">
+
+<h2>
+
+<i class="fa-solid fa-id-card"></i>
+
+Citizen Information
+
+</h2>
+
+<p>
+
+Your registered account details.
+
+</p>
+
+</div>
+
+<table class="profile-table">
+
+<tr>
+
+<td class="label">
+
+<i class="fa-solid fa-user"></i>
+
+Name
+
+</td>
+
+<td class="colon">:</td>
+
+<td class="value">
+
+<span id="profileName"></span>
+
+<input
+type="text"
+id="editName"
+style="display:none;">
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="label">
+
+<i class="fa-solid fa-envelope"></i>
+
+Email
+
+</td>
+
+<td class="colon">:</td>
+
+<td class="value">
+
+<span id="profileEmail"></span>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="label">
+
+<i class="fa-solid fa-phone"></i>
+
+Phone
+
+</td>
+
+<td class="colon">:</td>
+
+<td class="value">
+
+<span id="profilePhone"></span>
+
+<input
+type="text"
+id="editPhone"
+style="display:none;">
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="label">
+
+<i class="fa-solid fa-id-badge"></i>
+
+User ID
+
+</td>
+
+<td class="colon">:</td>
+
+<td class="value">
+
+<span id="profileId"></span>
+
+</td>
+
+</tr>
+
+</table>
+
+<div class="profile-actions">
+
+    <!-- Edit -->
+
+<button
+class="status-btn"
+id="editBtn"
+onclick="enableEdit()">
+
+<i class="fa-solid fa-pen"></i>
+
+Edit Profile
+
+</button>
+
+<!-- Save -->
+
+<button
+class="status-btn"
+id="saveBtn"
+onclick="saveProfile()"
+style="display:none;">
+
+<i class="fa-solid fa-floppy-disk"></i>
+
+Save Changes
+
+</button>
+
+<!-- Cancel -->
+
+<button
+class="logout-btn"
+id="cancelBtn"
+onclick="cancelEdit()"
+style="display:none;">
+
+<i class="fa-solid fa-xmark"></i>
+
+Cancel
+
+</button>
+
+<br><br>
+
+<button
+class="primary-btn"
+onclick="openPasswordModal()">
+
+<i class="fa-solid fa-lock"></i>
+
+Change Password
+
+</button>
+
+<br><br>
+
+<button
+class="secondary-btn"
+onclick="window.location.href='dashboard.html'">
+
+<i class="fa-solid fa-arrow-left"></i>
+
+Back to Dashboard
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+<footer class="profile-footer">
+
+<p>
+
+© 2026 Smart Bharat Assistant |
+Smart India Hackathon Project
+
+</p>
+
+</footer>
+
+</div>
+
+<script src="script.js"></script>
+
+<script>
+
+if (!localStorage.getItem("email")) {
+
+alert("Please Login First");
+
+window.location.href = "login.html";
+
+}
+
+if (localStorage.getItem("theme") === "dark") {
+
+document.body.classList.add("dark-mode");
+
+}
+
+function loadProfile() {
+
+document.getElementById("profileName").textContent =
+localStorage.getItem("name");
+
+document.getElementById("profileEmail").textContent =
+localStorage.getItem("email");
+
+document.getElementById("profilePhone").textContent =
+localStorage.getItem("phone");
+
+if (!localStorage.getItem("userId")) {
+
+localStorage.setItem(
+"userId",
+"SB" + Math.floor(100000 + Math.random() * 900000)
+);
+
+}
+
+document.getElementById("profileId").textContent =
+localStorage.getItem("userId");
+
+}
+
+function enableEdit() {
+
+document.getElementById("editName").style.display = "block";
+
+document.getElementById("editPhone").style.display = "block";
+
+document.getElementById("profileName").style.display = "none";
+
+document.getElementById("profilePhone").style.display = "none";
+
+document.getElementById("editName").value =
+localStorage.getItem("name");
+
+document.getElementById("editPhone").value =
+localStorage.getItem("phone");
+
+document.getElementById("editBtn").style.display = "none";
+
+document.getElementById("saveBtn").style.display = "inline-flex";
+
+document.getElementById("cancelBtn").style.display = "inline-flex";
+
+}
+
+function saveProfile() {
+
+const newName =
+document.getElementById("editName").value;
+
+const newPhone =
+document.getElementById("editPhone").value;
+
+localStorage.setItem("name", newName);
+
+localStorage.setItem("phone", newPhone);
+
+alert("Profile Updated Successfully");
+
+loadProfile();
+
+cancelEdit();
+
+}
+
+function cancelEdit() {
+
+document.getElementById("editName").style.display = "none";
+
+document.getElementById("editPhone").style.display = "none";
+
+document.getElementById("profileName").style.display = "inline";
+
+document.getElementById("profilePhone").style.display = "inline";
+
+document.getElementById("editBtn").style.display = "inline-flex";
+
+document.getElementById("saveBtn").style.display = "none";
+
+document.getElementById("cancelBtn").style.display = "none";
+
+}
+
+loadProfile();
+
+</script>
+
+<!-- Toast Notification -->
+
+<div id="toast" class="toast">
+
+<span id="toastIcon">✔</span>
+
+<p id="toastMessage">
+
+Success
+
+</p>
+
+</div>
+
+<!-- ================= CHANGE PASSWORD MODAL ================= -->
+
+<div id="passwordModal" class="modal">
+
+    <div class="modal-box">
+
+        <h2>🔒 Change Password</h2>
+
+        <p>Update your account password securely.</p>
+
+        <input
+            type="password"
+            id="oldPassword"
+            placeholder="Current Password">
+
+        <input
+            type="password"
+            id="newPassword"
+            placeholder="New Password">
+
+        <input
+            type="password"
+            id="confirmNewPassword"
+            placeholder="Confirm New Password">
+
+        <div class="modal-buttons">
+
+    <button
+        class="logout-btn"
+        onclick="closePasswordModal()">
+
+        Cancel
+
+    </button>
+
+    <button
+        class="status-btn"
+        onclick="submitPasswordChange()">
+
+        Update Password
+
+    </button>
+
+</div>
+
+    </div>
+
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const oldPassword = document.getElementById("oldPassword");
+    const newPassword = document.getElementById("newPassword");
+    const confirmPassword = document.getElementById("confirmNewPassword");
+
+    oldPassword.addEventListener("keydown", function (e) {
+        if (e.key === "Enter") {
+            e.preventDefault();
+            newPassword.focus();
+        }
+    });
+
+    newPassword.addEventListener("keydown", function (e) {
+        if (e.key === "Enter") {
+            e.preventDefault();
+            confirmPassword.focus();
+        }
+    });
+
+    confirmPassword.addEventListener("keydown", function (e) {
+        if (e.key === "Enter") {
+            e.preventDefault();
+            submitPasswordChange();
+        }
+    });
+
+});
+</script>
+
+</body>
+
+</html>

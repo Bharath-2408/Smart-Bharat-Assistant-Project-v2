@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+
+AI Smart Bharat Assistant
+
+</title>
+
+<link rel="stylesheet"
+href="style.css">
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="chat-page">
+
+<div class="chat-bg">
+
+<div class="blob one"></div>
+
+<div class="blob two"></div>
+
+<div class="blob three"></div>
+
+</div>
+
+<header class="chat-navbar">
+
+<div class="chat-logo">
+
+<img
+src="images/emblem.png"
+alt="Government Logo">
+
+<div>
+
+<h2>
+
+Smart Bharat Assistant
+
+</h2>
+
+<span>
+
+AI Powered Government Help Desk
+
+</span>
+
+</div>
+
+</div>
+
+<button
+
+class="secondary-btn"
+
+onclick="window.location.href='dashboard.html'">
+
+<i class="fa-solid fa-arrow-left"></i>
+
+Dashboard
+
+</button>
+
+</header>
+
+<section class="chat-hero">
+
+<div class="ai-avatar">
+
+<i class="fa-solid fa-robot"></i>
+
+</div>
+
+<h1>
+
+AI Smart Assistant
+
+</h1>
+
+<p>
+
+Ask anything about Government Schemes,
+Eligibility, Documents,
+Application Process and Benefits.
+
+</p>
+
+</section>
+
+<section class="chat-section">
+
+<div class="chat-card">
+
+<div class="chat-header">
+
+<h2>
+
+<i class="fa-solid fa-comments"></i>
+
+Start Conversation
+
+</h2>
+
+<p>
+
+Powered by Smart Bharat AI Assistant
+
+</p>
+
+</div>
+
+<div
+id="chatBox"
+class="chat-box">
+
+<div class="bot-message">
+
+<div class="bot-icon">
+
+🤖
+
+</div>
+
+<div class="message">
+
+Hello 👋
+
+<br><br>
+
+I can help you with
+
+<br>
+
+✅ Scholarship Schemes
+
+<br>
+
+✅ Farmer Schemes
+
+<br>
+
+✅ Women Welfare
+
+<br>
+
+✅ Pension
+
+<br>
+
+✅ PM Kisan
+
+<br>
+
+✅ Government Benefits
+
+</div>
+
+</div>
+
+</div>
+
+<div class="chat-input-area">
+
+    <div class="input-wrapper">
+
+<input
+type="text"
+id="userMessage"
+placeholder="Type your question here..."
+required
+onkeypress="handleEnter(event)">
+
+<button
+class="send-btn"
+onclick="sendMessage()">
+
+<i class="fa-solid fa-paper-plane"></i>
+
+Send
+
+</button>
+
+</div>
+
+<div class="quick-actions">
+
+<button
+onclick="document.getElementById('userMessage').value='Scholarship Schemes';sendMessage();">
+
+🎓 Scholarship
+
+</button>
+
+<button
+onclick="document.getElementById('userMessage').value='PM Kisan Scheme';sendMessage();">
+
+🌾 PM Kisan
+
+</button>
+
+<button
+onclick="document.getElementById('userMessage').value='Women Welfare Schemes';sendMessage();">
+
+👩 Women
+
+</button>
+
+<button
+onclick="document.getElementById('userMessage').value='Old Age Pension';sendMessage();">
+
+👴 Pension
+
+</button>
+
+</div>
+
+<div class="chat-footer">
+
+<button
+class="secondary-btn"
+onclick="window.location.href='dashboard.html'">
+
+<i class="fa-solid fa-arrow-left"></i>
+
+Back to Dashboard
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+</div>
+
+<script src="script.js"></script>
+
+<script>
+
+/* Login Check */
+
+if (!localStorage.getItem("email")){
+
+alert("Please Login First");
+
+window.location.href="login.html";
+
+}
+
+/* Press Enter */
+
+function handleEnter(event){
+
+if(event.key==="Enter"){
+
+sendMessage();
+
+}
+
+}
+
+</script>
+
+<!-- Toast Notification -->
+
+<div id="toast" class="toast">
+
+<span id="toastIcon">✔</span>
+
+<p id="toastMessage">
+
+Success
+
+</p>
+
+</div>
+
+</body>
+
+</html>

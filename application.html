@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+Apply for Scheme | Smart Bharat Assistant
+</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<script src="script.js"></script>
+
+</head>
+
+<body>
+
+<div class="auth-wrapper">
+
+    <!-- LEFT SIDE -->
+
+    <div class="auth-left">
+
+        <div class="brand">
+
+            <img src="images/emblem.png" class="brand-logo">
+
+            <div>
+
+                <h1>Smart Bharat Assistant</h1>
+
+                <p>AI Powered Government Scheme Portal</p>
+
+            </div>
+
+        </div>
+
+        <span class="badge">
+
+            IN Digital India Initiative
+
+        </span>
+
+        <h2>
+
+            Apply for Government Scheme
+
+        </h2>
+
+        <p class="welcome-text">
+
+            Complete your application securely by filling the required details.
+            Your information is protected and submitted directly for processing.
+
+        </p>
+
+        <div class="feature-grid">
+
+            <div class="feature-card">
+
+                <i class="fa-solid fa-file-signature"></i>
+
+                Easy Online Application
+
+            </div>
+
+            <div class="feature-card">
+
+                <i class="fa-solid fa-shield-halved"></i>
+
+                Secure Data Protection
+
+            </div>
+
+            <div class="feature-card">
+
+                <i class="fa-solid fa-circle-check"></i>
+
+                Instant Submission
+
+            </div>
+
+            <div class="feature-card">
+
+                <i class="fa-solid fa-file-pdf"></i>
+
+                PDF Receipt Download
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="progress-container">
+
+    <div class="progress-step active">
+
+        <div class="circle">1</div>
+
+        <span>Select Scheme</span>
+
+    </div>
+
+    <div class="progress-line"></div>
+
+    <div class="progress-step active">
+
+        <div class="circle">2</div>
+
+        <span>Fill Details</span>
+
+    </div>
+
+    <div class="progress-line"></div>
+
+    <div class="progress-step">
+
+        <div class="circle">3</div>
+
+        <span>Submit</span>
+
+    </div>
+
+</div>
+
+    <!-- RIGHT SIDE -->
+
+    <div class="login-box">
+
+        <h1>
+
+            Scheme Application
+
+        </h1>
+
+        <p>
+
+            Fill in your application details
+
+        </p>
+
+        <form
+        autocomplete="off"
+        onsubmit="submitApplication(); return false;">
+
+            <div class="input-group">
+
+                <i class="fa-solid fa-user"></i>
+
+                <input
+                type="text"
+                id="applicantName"
+                placeholder="Applicant Name"
+                required>
+
+            </div>
+
+            <div class="input-group">
+
+                <i class="fa-solid fa-id-card"></i>
+
+                <input
+                type="text"
+                id="aadhaar"
+                placeholder="12 Digit Aadhaar Number"
+                maxlength="12"
+                pattern="[0-9]{12}"
+                required>
+
+            </div>
+
+            <div class="input-group">
+
+                <i class="fa-solid fa-location-dot"></i>
+
+                <input
+                type="text"
+                id="address"
+                placeholder="Residential Address"
+                required>
+
+            </div>
+
+            <div class="input-group">
+
+                <i class="fa-solid fa-landmark"></i>
+
+                <input
+                type="text"
+                id="scheme"
+                placeholder="Selected Scheme"
+                readonly>
+
+            </div>
+
+            <button
+            class="primary-btn"
+            type="submit">
+
+                <i class="fa-solid fa-paper-plane"></i>
+
+                Submit Application
+
+            </button>
+
+        </form>
+
+        <div class="divider">
+
+            <span>
+
+                Smart Bharat Assistant
+
+            </span>
+
+        </div>
+
+        <button
+        class="home-btn"
+        onclick="window.location.href='dashboard.html'">
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+            Back to Dashboard
+
+        </button>
+
+    </div>
+
+</div>
+
+<script>
+
+if (!localStorage.getItem("email")) {
+
+    showToast("Please Login First","error");
+
+    setTimeout(()=>{
+
+        window.location.href="login.html";
+
+    },1500);
+
+}
+
+const selectedScheme=localStorage.getItem("selectedScheme");
+
+if(selectedScheme){
+
+    document.getElementById("scheme").value=selectedScheme;
+
+}
+
+else{
+
+    showToast("Please Select a Scheme First","error");
+
+    setTimeout(()=>{
+
+        window.location.href="dashboard.html";
+
+    },1500);
+
+}
+
+const savedName=localStorage.getItem("name");
+
+if(savedName){
+
+    document.getElementById("applicantName").value=savedName;
+
+}
+
+if(localStorage.getItem("theme")==="dark"){
+
+    document.body.classList.add("dark-mode");
+
+}
+
+</script>
+
+<div id="toast" class="toast">
+
+<span id="toastIcon">✔</span>
+
+<p id="toastMessage">
+
+Success
+
+</p>
+
+</div>
+
+</body>
+
+</html>

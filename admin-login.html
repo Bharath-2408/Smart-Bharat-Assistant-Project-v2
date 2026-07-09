@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+
+        Admin Login | Smart Bharat Assistant
+
+    </title>
+
+    <link rel="stylesheet"
+          href="style.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="auth-wrapper">
+
+    <!-- ================= LEFT PANEL ================= -->
+
+    <div class="auth-left">
+
+        <div class="brand">
+
+            <img
+                src="images/emblem.png"
+                alt="Government Logo"
+                class="brand-logo">
+
+            <div class="brand-title">
+
+                <h1>
+
+                    Smart Bharat
+                    <br>
+                    Assistant
+
+                </h1>
+
+            </div>
+
+            <div class="portal-title">
+
+                <p>
+
+                    AI Powered Government
+                    <br>
+                    Scheme Portal
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <span class="badge">
+
+            Administration Portal
+
+        </span>
+
+        <h2>
+
+            Admin
+            <br>
+            Dashboard Access
+
+        </h2>
+
+        <p class="welcome-text">
+
+            Secure administrator login for managing government scheme
+            applications, reviewing requests, approving beneficiaries,
+            monitoring user activities and maintaining the Smart Bharat
+            Assistant portal.
+
+        </p>
+
+        <div class="feature-grid">
+
+            <div class="feature-card">
+
+                <i class="fa-solid fa-user-shield"></i>
+
+                <span>
+
+                    Secure Admin Access
+
+                </span>
+
+            </div>
+
+            <div class="feature-card">
+
+                <i class="fa-solid fa-file-circle-check"></i>
+
+                <span>
+
+                    Application Approval
+
+                </span>
+
+            </div>
+
+            <div class="feature-card">
+
+                <i class="fa-solid fa-chart-line"></i>
+
+                <span>
+
+                    Dashboard Analytics
+
+                </span>
+
+            </div>
+
+            <div class="feature-card">
+
+                <i class="fa-solid fa-lock"></i>
+
+                <span>
+
+                    Protected Administration
+
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ================= RIGHT PANEL ================= -->
+
+    <div class="login-box">
+
+        <h1>
+
+            Admin Login
+
+        </h1>
+
+        <p>
+
+            Sign in using your administrator credentials.
+
+        </p>
+
+        <form
+            autocomplete="off"
+            onsubmit="adminLogin(); return false;">
+
+            <div class="input-group">
+
+                <i class="fa-solid fa-user"></i>
+
+                <input
+    
+                    type="email"
+                    id="adminEmail"
+                    placeholder="Administrator Email"
+                    required>
+
+            </div>
+
+            <div class="input-group">
+
+                <i class="fa-solid fa-lock"></i>
+
+                <input
+                    type="password"
+                    id="adminPassword"
+                    placeholder="Administrator Password"
+                    required>
+
+            </div>
+
+            <button
+                type="submit"
+                class="primary-btn">
+
+                <i class="fa-solid fa-right-to-bracket"></i>
+
+                Login
+
+            </button>
+
+        </form>
+
+        <p class="register-text">
+
+            Login as User?
+
+            <a href="login.html">
+
+                User Login
+
+            </a>
+
+        </p>
+
+        <div class="divider">
+
+            <span>
+
+                Smart Bharat Assistant
+
+            </span>
+
+        </div>
+
+        <button
+            class="home-btn"
+            onclick="window.location.href='index.html'">
+
+            <i class="fa-solid fa-house"></i>
+
+            Back to Home
+
+        </button>
+
+    </div>
+
+</div>
+
+<!-- Toast -->
+
+<div id="toast" class="toast">
+
+    <span id="toastIcon">
+
+        ✔
+
+    </span>
+
+    <p id="toastMessage">
+
+        Success
+
+    </p>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>

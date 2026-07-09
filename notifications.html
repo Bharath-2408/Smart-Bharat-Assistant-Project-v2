@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+
+Notifications | Smart Bharat Assistant
+
+</title>
+
+<link rel="stylesheet"
+href="style.css">
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="notification-page">
+
+<div class="notification-bg">
+
+<div class="blob one"></div>
+
+<div class="blob two"></div>
+
+<div class="blob three"></div>
+
+</div>
+
+<header class="notification-navbar">
+
+<div class="notification-logo">
+
+<img
+src="images/emblem.png"
+alt="Government">
+
+<div>
+
+<h2>
+
+Smart Bharat Assistant
+
+</h2>
+
+<span>
+
+Government Notification Center
+
+</span>
+
+</div>
+
+</div>
+
+<button
+
+class="secondary-btn"
+
+onclick="window.location.href='dashboard.html'">
+
+<i class="fa-solid fa-arrow-left"></i>
+
+Dashboard
+
+</button>
+
+</header>
+
+<section class="notification-hero">
+
+<div class="notification-icon">
+
+<i class="fa-solid fa-bell"></i>
+
+</div>
+
+<h1>
+
+Notifications
+
+</h1>
+
+<p>
+
+Stay updated with the latest Government
+scheme announcements, application status,
+important alerts and citizen updates.
+
+</p>
+
+</section>
+
+<section class="notification-section">
+
+<div class="notification-card">
+
+<div class="notification-header">
+
+<h2>
+
+<i class="fa-solid fa-bell"></i>
+
+Latest Updates
+
+</h2>
+
+<p>
+
+Your recent notifications appear below.
+
+</p>
+
+</div>
+
+<div
+
+id="notificationList"
+
+class="notification-list">
+
+<!-- Notifications will load here -->
+
+</div>
+
+<div class="notification-footer">
+
+    <button
+class="secondary-btn"
+onclick="window.location.href='dashboard.html'">
+
+<i class="fa-solid fa-arrow-left"></i>
+
+Back to Dashboard
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+<footer class="notification-bottom">
+
+<p>
+
+© 2026 Smart Bharat Assistant |
+Smart India Hackathon Project
+
+</p>
+
+</footer>
+
+</div>
+
+<script src="script.js"></script>
+
+<script>
+
+/* Login Check */
+
+if(!localStorage.getItem("email")){
+
+alert("Please Login First");
+
+window.location.href="login.html";
+
+}
+
+/* Dark Mode */
+
+if(localStorage.getItem("theme")==="dark"){
+
+document.body.classList.add("dark-mode");
+
+}
+
+/* Load Notifications */
+
+loadNotifications();
+
+</script>
+
+<!-- Toast Notification -->
+
+<div id="toast" class="toast">
+
+<span id="toastIcon">✔</span>
+
+<p id="toastMessage">
+
+Success
+
+</p>
+
+</div>
+
+</body>
+
+</html>

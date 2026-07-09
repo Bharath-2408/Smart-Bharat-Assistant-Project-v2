@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+
+        Register | Smart Bharat Assistant
+
+    </title>
+
+    <!-- Main CSS -->
+
+    <link rel="stylesheet"
+          href="style.css">
+
+    <!-- Google Font -->
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <!-- Font Awesome -->
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- Existing Script -->
+
+    <script src="script.js"></script>
+
+</head>
+
+<body>
+
+<div class="register-page">
+
+    <!-- Background -->
+
+    <div class="register-bg">
+
+        <span class="blob one"></span>
+
+        <span class="blob two"></span>
+
+        <span class="blob three"></span>
+
+    </div>
+
+    <!-- Left Side -->
+
+    <section class="register-left">
+
+        <div class="register-brand">
+
+            <img
+                src="images/emblem.png"
+                alt="Government Emblem">
+
+            <div>
+
+                <h1>
+
+                    Smart Bharat Assistant
+
+                </h1>
+
+                <span>
+
+                    AI Powered Government Scheme Portal
+
+                </span>
+
+            </div>
+
+        </div>
+
+        <div class="register-content">
+
+            <span class="register-tag">
+
+                🇮🇳 Digital India Mission
+
+            </span>
+
+            <h2>
+
+                Create Your Account
+
+            </h2>
+
+            <p>
+
+                Register to discover Government welfare
+                schemes, apply online, track applications,
+                receive notifications and access our
+                AI-powered Smart Bharat Assistant.
+
+            </p>
+
+            <div class="register-features">
+
+                <div>
+
+                    <i class="fa-solid fa-circle-check"></i>
+
+                    Free Registration
+
+                </div>
+
+                <div>
+
+                    <i class="fa-solid fa-circle-check"></i>
+
+                    150+ Government Schemes
+
+                </div>
+
+                <div>
+
+                    <i class="fa-solid fa-circle-check"></i>
+
+                    Secure Citizen Account
+
+                </div>
+
+                <div>
+
+                    <i class="fa-solid fa-circle-check"></i>
+
+                    AI Powered Assistance
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Right Side -->
+
+    <section class="register-right">
+
+        <div class="register-box">
+
+            <div class="register-header">
+
+                <h2>
+
+                    Create Account
+
+                </h2>
+
+                <p>
+
+                    Register to continue with Smart Bharat Assistant.
+
+                </p>
+
+            </div>
+
+            <!-- FORM STARTS -->
+
+            <form onsubmit="registerUser(); return false;">
+
+                                <!-- Full Name -->
+
+                <div class="input-group">
+
+                    <i class="fa-solid fa-user"></i>
+
+                    <input
+                        type="text"
+                        id="name"
+                        placeholder="Full Name"
+                        required>
+
+                </div>
+
+                <!-- Email -->
+
+                <div class="input-group">
+
+                    <i class="fa-solid fa-envelope"></i>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Email Address"
+                        required>
+
+                </div>
+
+                <!-- Phone -->
+
+                <div class="input-group">
+
+                    <i class="fa-solid fa-phone"></i>
+
+                    <input
+                        type="tel"
+                        id="phone"
+                        placeholder="Phone Number"
+                        required>
+
+                </div>
+
+                <!-- Password -->
+
+                <div class="input-group">
+
+                    <i class="fa-solid fa-lock"></i>
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Password"
+                        required>
+
+                </div>
+
+                <!-- Confirm Password -->
+
+                <div class="input-group">
+
+                    <i class="fa-solid fa-shield-halved"></i>
+
+                    <input
+                        type="password"
+                        id="confirmPassword"
+                        placeholder="Confirm Password"
+                        required>
+
+                </div>
+
+                <!-- Register Button -->
+
+                <button
+                    type="submit"
+                    class="register-btn">
+
+                    <i class="fa-solid fa-user-plus"></i>
+
+                    Create Account
+
+                </button>
+
+            </form>
+
+            <!-- Bottom Links -->
+
+            <div class="login-links">
+
+                <span>
+
+                    Already have an account?
+
+                </span>
+
+                <a href="login.html">
+
+                    Login
+
+                </a>
+
+            </div>
+
+            <div class="divider">
+
+                <span>
+
+                    Smart Bharat Assistant
+
+                </span>
+
+            </div>
+
+            <button
+                class="home-btn"
+                onclick="window.location.href='index.html'">
+
+                <i class="fa-solid fa-house"></i>
+
+                Back to Home
+
+            </button>
+
+        </div>
+
+    </section>
+
+</div>
+
+<!-- Toast Notification -->
+
+<div id="toast" class="toast">
+
+<span id="toastIcon">✔</span>
+
+<p id="toastMessage">
+
+Success
+
+</p>
+
+</div>
+
+</body>
+
+</html>

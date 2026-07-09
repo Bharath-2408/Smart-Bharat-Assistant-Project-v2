@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>
+Dashboard | Smart Bharat Assistant
+</title>
+
+<!-- Main CSS -->
+<link rel="stylesheet"
+      href="style.css">
+
+<!-- Google Font -->
+<link rel="preconnect"
+      href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet">
+
+<!-- Font Awesome -->
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<!-- ===========================
+      DASHBOARD START
+=========================== -->
+
+<div class="dashboard">
+
+<!-- Floating Background -->
+
+<div class="dashboard-bg">
+
+<div class="blob one"></div>
+
+<div class="blob two"></div>
+
+<div class="blob three"></div>
+
+</div>
+
+
+<!-- ===========================
+      NAVBAR
+=========================== -->
+
+<header class="dashboard-navbar">
+
+<div class="dashboard-logo">
+
+<img
+src="images/emblem.png"
+alt="Government Logo">
+
+<div>
+
+<h2>
+
+Smart Bharat
+
+</h2>
+
+<span>
+
+AI Government Assistant
+
+</span>
+
+</div>
+
+</div>
+
+
+<div class="dashboard-menu">
+
+<button
+class="status-btn"
+onclick="window.location.href='profile.html'">
+
+<i class="fa-solid fa-user"></i>
+
+My Profile
+
+</button>
+
+<button
+class="logout-btn"
+onclick="logout()">
+
+<i class="fa-solid fa-right-from-bracket"></i>
+
+Logout
+
+</button>
+
+</div>
+
+</header>
+
+
+<!-- ===========================
+      HERO
+=========================== -->
+
+<section class="dashboard-hero">
+
+<div class="hero-content">
+
+<div class="dashboard-tag">
+
+🇮🇳 Digital India Mission
+
+</div>
+
+<h1 id="welcomeText">
+
+Welcome 👋
+
+</h1>
+
+<p>
+
+Welcome to your Smart Bharat Dashboard.
+
+Discover Government welfare schemes,
+apply online, track application status,
+receive notifications and access
+our AI-powered assistant.
+
+</p>
+
+<div class="hero-buttons">
+
+<button
+class="primary-btn"
+onclick="window.location.href='chatbox.html'">
+
+<i class="fa-solid fa-robot"></i>
+
+AI Assistant
+
+</button>
+
+<button
+class="secondary-btn"
+onclick="window.location.href='status.html'">
+
+<i class="fa-solid fa-chart-line"></i>
+
+Track Status
+
+</button>
+
+</div>
+
+</div>
+
+
+<div class="hero-image">
+
+<div class="dashboard-circle">
+
+<img
+src="images/emblem.png"
+alt="Government">
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ===========================
+      QUICK STATS
+=========================== -->
+
+<section class="dashboard-stats">
+
+<div class="stat-card">
+
+<div class="stat-icon blue">
+
+<i class="fa-solid fa-building-columns"></i>
+
+</div>
+
+<h2>
+
+150+
+
+</h2>
+
+<p>
+
+Government Schemes
+
+</p>
+
+</div>
+
+
+<div class="stat-card">
+
+<div class="stat-icon green">
+
+<i class="fa-solid fa-users"></i>
+
+</div>
+
+<h2>
+
+28
+
+</h2>
+
+<p>
+
+States Covered
+
+</p>
+
+</div>
+
+
+<div class="stat-card">
+
+<div class="stat-icon orange">
+
+<i class="fa-solid fa-headset"></i>
+
+</div>
+
+<h2>
+
+24 × 7
+
+</h2>
+
+<p>
+
+AI Assistance
+
+</p>
+
+</div>
+
+
+<div class="stat-card">
+
+<div class="stat-icon purple">
+
+<i class="fa-solid fa-shield-halved"></i>
+
+</div>
+
+<h2>
+
+100%
+
+</h2>
+
+<p>
+
+Secure Platform
+
+</p>
+
+</div>
+
+</section>
+
+
+<!-- ===========================
+      SEARCH
+=========================== -->
+
+<section class="dashboard-search">
+
+<div class="section-heading">
+
+<h5>
+
+EXPLORE SCHEMES
+
+</h5>
+
+<h2>
+
+Available Government Schemes
+
+</h2>
+
+<p>
+
+Search Government schemes using
+AI-powered recommendations.
+
+</p>
+
+</div>
+
+
+<div class="search-box">
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+<input
+
+type="text"
+
+id="searchInput"
+
+placeholder="Search PM Kisan, PMAY, Ayushman Bharat..."
+
+onkeyup="searchScheme()">
+
+<button
+
+type="button"
+
+onclick="searchScheme()">
+
+Search
+
+</button>
+
+</div>
+
+</section>
+
+
+<!-- ===========================
+      QUICK ACTIONS
+=========================== -->
+
+<section class="dashboard-actions-grid">
+
+<div
+class="action-card"
+onclick="window.location.href='status.html'">
+
+<div class="action-icon">
+
+📋
+
+</div>
+
+<h3>
+
+Application Status
+
+</h3>
+
+<p>
+
+Track your submitted applications.
+
+</p>
+
+</div>
+
+
+<div
+class="action-card"
+onclick="window.location.href='notifications.html'">
+
+<div class="action-icon">
+
+🔔
+
+</div>
+
+<h3>
+
+Notifications
+
+</h3>
+
+<p>
+
+Latest updates from Government.
+
+</p>
+
+</div>
+
+
+<div
+class="action-card"
+onclick="window.location.href='chatbox.html'">
+
+<div class="action-icon">
+
+🤖
+
+</div>
+
+<h3>
+
+Smart AI
+
+</h3>
+
+<p>
+
+Ask AI for Scheme Guidance.
+
+</p>
+
+</div>
+
+
+<div
+class="action-card"
+onclick="window.location.href='profile.html'">
+
+<div class="action-icon">
+
+👤
+
+</div>
+
+<h3>
+
+Profile
+
+</h3>
+
+<p>
+
+Manage your account.
+
+</p>
+
+</div>
+
+</section>
+
+
+<!-- ===========================
+      SCHEME LIST
+=========================== -->
+
+<section class="scheme-section">
+
+<div class="section-heading">
+
+<h5>
+
+RECOMMENDED
+
+</h5>
+
+<h2>
+
+Government Welfare Schemes
+
+</h2>
+
+<p>
+
+Choose a scheme and apply online.
+
+</p>
+
+</div>
+
+<div
+class="scheme-container"
+id="schemeContainer">
+
+<!-- JS Loads Cards -->
+
+</div>
+
+</section>
+
+<!-- ===========================
+        DASHBOARD CTA
+=========================== -->
+
+<section class="dashboard-cta">
+
+    <div class="cta-card">
+
+        <div class="cta-left">
+
+            <h2>
+
+                Need Help Finding the Right Scheme?
+
+            </h2>
+
+            <p>
+
+                Our Smart Bharat AI Assistant helps you
+                discover eligible Government schemes,
+                guides you through applications and
+                answers your questions instantly.
+
+            </p>
+
+        </div>
+
+        <div class="cta-right">
+
+            <button
+                class="primary-btn"
+                onclick="window.location.href='chatbox.html'">
+
+                <i class="fa-solid fa-robot"></i>
+
+                Open AI Assistant
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ===========================
+        FOOTER
+=========================== -->
+
+<footer class="dashboard-footer">
+
+<div class="footer-grid">
+
+<div>
+
+<img
+src="images/emblem.png"
+width="70">
+
+<h3>
+
+Smart Bharat Assistant
+
+</h3>
+
+<p>
+
+AI Powered Government Scheme Portal
+helping every citizen discover,
+apply and track Government welfare
+schemes efficiently.
+
+</p>
+
+</div>
+
+
+<div>
+
+<h4>
+
+Quick Links
+
+</h4>
+
+<a href="index.html">
+
+Home
+
+</a>
+
+<a href="dashboard.html">
+
+Dashboard
+
+</a>
+
+<a href="profile.html">
+
+Profile
+
+</a>
+
+<a href="status.html">
+
+Status
+
+</a>
+
+</div>
+
+
+<div>
+
+<h4>
+
+Services
+
+</h4>
+
+<a href="notifications.html">
+
+Notifications
+
+</a>
+
+<a href="chatbox.html">
+
+AI Assistant
+
+</a>
+
+<a href="#">
+
+Government Schemes
+
+</a>
+
+<a href="#">
+
+Support
+
+</a>
+
+</div>
+
+
+<div>
+
+<h4>
+
+Contact
+
+</h4>
+
+<p>
+
+📍 India
+
+</p>
+
+<p>
+
+📧 support@smartbharat.ai
+
+</p>
+
+<p>
+
+☎ +91 XXXXX XXXXX
+
+</p>
+
+</div>
+
+</div>
+
+<hr>
+
+<p class="copyright">
+
+© 2026 Smart Bharat Assistant |
+Smart India Hackathon Project |
+All Rights Reserved.
+
+</p>
+
+</footer>
+
+
+<!-- ===========================
+        FLOATING AI BUTTON
+=========================== -->
+
+<button
+class="floating-ai"
+onclick="window.location.href='chatbox.html'">
+
+🤖
+
+</button>
+
+
+<!-- ===========================
+        SCRIPT
+=========================== -->
+
+<script src="script.js"></script>
+
+<script>
+
+window.onload=function(){
+
+const email=localStorage.getItem("email");
+
+if(!email){
+
+alert("Please Login First");
+
+window.location.href="login.html";
+
+return;
+
+}
+
+if(localStorage.getItem("theme")==="true"){
+
+document.body.classList.add("dark-mode");
+
+}
+
+document.getElementById("welcomeText").innerHTML=
+
+"Welcome "+(localStorage.getItem("name")||"User")+" 👋";
+
+displaySchemes();
+
+};
+
+</script>
+
+</div>
+
+<!-- Toast Notification -->
+
+<div id="toast" class="toast">
+
+<span id="toastIcon">✔</span>
+
+<p id="toastMessage">
+
+Success
+
+</p>
+
+</div>
+
+</body>
+
+</html>
