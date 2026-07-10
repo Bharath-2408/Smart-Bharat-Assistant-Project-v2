@@ -1,5 +1,26 @@
 const API_URL = "https://smart-bharat-assistant-project.onrender.com/api/users";
 
+let schemes = [];
+
+async function loadSchemes() {
+    try {
+        const response = await fetch("http://localhost:5000/api/schemes");
+        const data = await response.json();
+
+        if (data.success) {
+            schemes = data.schemes;
+            displaySchemes(schemes);
+        } else {
+            console.log(data.message);
+        }
+
+    } catch (err) {
+        console.error("Error:", err);
+    }
+}
+
+loadSchemes();
+
 // ================= REGISTER =================
 async function registerUser() {
 
@@ -753,7 +774,7 @@ function searchScheme() {
 
     const filteredSchemes = schemes.filter((scheme) => {
         return (
-            scheme.name.toLowerCase().includes(searchValue) ||
+            scheme.scheme_name.toLowerCase().includes(searchValue) ||
             scheme.description.toLowerCase().includes(searchValue)
         );
     });
@@ -796,70 +817,6 @@ window.addEventListener("load", function () {
 
 });
 
-const schemes = [
-
-{ name: "PM Kisan Samman Nidhi", description: "Income support for farmers." },
-
-{ name: "Ayushman Bharat Yojana", description: "Health insurance for poor families." },
-
-{ name: "PM Awas Yojana", description: "Affordable housing for all." },
-
-{ name: "Atal Pension Yojana", description: "Pension support for workers." },
-
-{ name: "Sukanya Samriddhi Yojana", description: "Savings scheme for girl children." },
-
-{ name: "Mudra Loan Scheme", description: "Loan support for small businesses." },
-
-{ name: "Stand Up India Scheme", description: "Entrepreneurship support for SC/ST/Women." },
-
-{ name: "PM Scholarship Scheme", description: "Financial support for students." },
-
-{ name: "National Education Scholarship", description: "Scholarship for higher education." },
-
-{ name: "Skill India Mission", description: "Skill development training for youth." },
-
-{ name: "Digital India Scheme", description: "Promoting digital literacy and online services." },
-
-{ name: "Startup India Scheme", description: "Support for startups and innovation." },
-
-{ name: "Beti Bachao Beti Padhao", description: "Girl child welfare and education." },
-
-{ name: "Ujjwala Yojana", description: "Free LPG connection for women." },
-
-{ name: "PM Suraksha Bima Yojana", description: "Accident insurance coverage." },
-
-{ name: "PM Jeevan Jyoti Bima Yojana", description: "Life insurance coverage." },
-
-{ name: "Jan Dhan Yojana", description: "Bank account for all citizens." },
-
-{ name: "MGNREGA", description: "Employment guarantee for rural households." },
-
-{ name: "National Food Security Scheme", description: "Food grains support for poor families." },
-
-{ name: "PM Fasal Bima Yojana", description: "Crop insurance for farmers." },
-
-{ name: "Kisan Credit Card Scheme", description: "Credit support for farmers." },
-
-{ name: "PM Vishwakarma Yojana", description: "Support for traditional workers." },
-
-{ name: "One Nation One Ration Card", description: "Portable ration card across India." },
-
-{ name: "Swachh Bharat Mission", description: "Clean India initiative." },
-
-{ name: "Jal Jeevan Mission", description: "Tap water connection for rural homes." },
-
-{ name: "National Health Mission", description: "Healthcare services for all." },
-
-{ name: "Free Laptop Scheme", description: "Laptop support for students." },
-
-{ name: "Women Self Help Group Scheme", description: "Financial support for women groups." },
-
-{ name: "PM Employment Generation Programme", description: "Support for employment generation." },
-
-{ name: "Farmer Welfare Scheme", description: "Farmer welfare and subsidy support." }
-
-];  
-
 function displaySchemes(list = schemes) {
     let html = "";
 
@@ -867,11 +824,11 @@ function displaySchemes(list = schemes) {
         html += `
         <div class="scheme-card">
 
-            <h3>${scheme.name}</h3>
+            <h3>${scheme.scheme_name}</h3>
 
             <p>${scheme.description}</p>
 
-            <button onclick="viewScheme('${scheme.name}')">
+           <button onclick="viewScheme('${scheme.scheme_name}')">
                 View Details
             </button>
 

@@ -9,6 +9,8 @@ require("./db");
 // Routes
 const userRoutes = require("./routes/users");
 
+const schemeRoutes = require("./routes/schemes");
+
 const app = express();
 
 // ================= MIDDLEWARE =================
@@ -27,6 +29,7 @@ app.get("/", (req, res) => {
 
 // ================= USER ROUTES =================
 app.use("/api/users", userRoutes);
+app.use("/api/schemes", schemeRoutes);
 
 // ================= INVALID ROUTE =================
 app.use((req, res) => {
