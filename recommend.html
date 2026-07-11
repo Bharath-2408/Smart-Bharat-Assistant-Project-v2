@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Find Eligible Schemes | Smart Bharat Assistant</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body class="recommend-page">
+
+<div class="recommend-container">
+
+    <div class="recommend-header">
+
+        <h1>
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+            Find Eligible Schemes
+        </h1>
+
+        <p>
+            Answer a few questions and we'll recommend the best Government schemes for you.
+        </p>
+
+    </div>
+
+
+    <div class="recommend-card">
+
+        <div class="form-grid">
+
+            <div class="form-group">
+
+                <label>Age</label>
+
+                <input
+                type="number"
+                id="age"
+                placeholder="Enter your age">
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Gender</label>
+
+                <select id="gender">
+
+                    <option>Male</option>
+                    <option>Female</option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Occupation</label>
+
+                <select id="occupation">
+
+                    <option>Farmer</option>
+                    <option>Student</option>
+                    <option>Business</option>
+                    <option>Worker</option>
+                    <option>Government Employee</option>
+                    <option>Private Employee</option>
+                    <option>Unemployed</option>
+                    <option>Other</option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Annual Income (₹)</label>
+
+                <input
+                type="number"
+                id="income"
+                placeholder="Enter annual income">
+
+            </div>
+
+        </div>
+
+
+        <button
+        class="find-btn"
+        onclick="findRecommendedSchemes()">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            Find My Eligible Schemes
+
+        </button>
+
+    </div>
+
+
+    <div class="results-title">
+
+        <h2>
+
+            Recommended Schemes
+
+        </h2>
+
+    </div>
+
+
+    <div
+    id="recommendContainer"
+    class="scheme-container">
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>

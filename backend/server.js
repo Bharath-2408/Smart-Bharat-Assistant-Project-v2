@@ -9,6 +9,8 @@ require("./db");
 
 const userRoutes = require("./routes/users");
 const schemeRoutes = require("./routes/schemes");
+const recommendRoutes = require("./routes/recommend");
+console.log("Recommend Route Loaded ✅");
 
 const app = express();
 
@@ -22,6 +24,7 @@ app.get("/", (req, res) => {
 
 app.use("/api/users", userRoutes);
 app.use("/api/schemes", schemeRoutes);
+app.use("/api/recommend", recommendRoutes);
 
 app.use((req, res) => {
     res.status(404).json({
@@ -34,3 +37,4 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
+

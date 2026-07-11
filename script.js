@@ -818,9 +818,27 @@ window.addEventListener("load", function () {
 });
 
 function displaySchemes(list = schemes) {
+
+    const container = document.getElementById("schemeContainer");
+
+    if (!container) return;
+
     let html = "";
 
+    if (!list || list.length === 0) {
+
+        container.innerHTML = `
+            <div class="scheme-card">
+                <h3>No Schemes Found</h3>
+                <p>Try searching another keyword.</p>
+            </div>
+        `;
+
+        return;
+    }
+
     list.forEach((scheme) => {
+
         html += `
         <div class="scheme-card">
 
@@ -828,47 +846,63 @@ function displaySchemes(list = schemes) {
 
             <p>${scheme.description}</p>
 
-           <button onclick="viewScheme('${scheme.scheme_name}')">
+            <button
+                class="primary-btn"
+                onclick="viewScheme('${scheme.scheme_name}')">
+
                 View Details
+
             </button>
 
         </div>
         `;
+
     });
 
-    document.getElementById("schemeContainer").innerHTML = html;
+    container.innerHTML = html;
+
 }
 
 async function loadStatistics() {
+
+    const total = document.getElementById("totalCount");
+
+    if (!total) return;
+
     try {
-    
-            const response = await fetch(
-    `${API_URL}/applications`
-);
-        
+
+        const response = await fetch(`${API_URL}/applications`);
 
         const data = await response.json();
 
         const pending = data.filter(
-            app => app.status.trim().toLowerCase() === "pending"
+            app => String(app.status).trim().toLowerCase() === "pending"
         ).length;
 
         const approved = data.filter(
-            app => app.status.trim().toLowerCase() === "approved"
+            app => String(app.status).trim().toLowerCase() === "approved"
         ).length;
 
         const rejected = data.filter(
-            app => app.status.trim().toLowerCase() === "rejected"
+            app => String(app.status).trim().toLowerCase() === "rejected"
         ).length;
 
-        document.getElementById("totalCount").innerHTML = data.length;
+        total.innerHTML = data.length;
+
         document.getElementById("pendingCount").innerHTML = pending;
+
         document.getElementById("approvedCount").innerHTML = approved;
+
         document.getElementById("rejectedCount").innerHTML = rejected;
 
-    } catch (err) {
-        console.log(err);
     }
+
+    catch(err){
+
+        console.log(err);
+
+    }
+
 }
 
 function selectScheme(schemeName) {
@@ -884,6 +918,125 @@ function viewScheme(schemeName) {
 
     window.location.href =
         "scheme-details.html";
+}
+
+async function findRecommendedSchemes(){
+
+    const age = Number(document.getElementById("age").value);
+
+    const gender = document.getElementById("gender").value;
+
+    const occupation = document.getElementById("occupation").value;
+
+    const income = Number(document.getElementById("income").value);
+
+    if(!age || !income){
+
+        alert("Please fill all fields.");
+
+        return;
+
+    }
+
+    try{
+
+        const response = await fetch(
+            "http://localhost:5000/api/recommend",
+            {
+
+                method:"POST",
+
+                headers:{
+                    "Content-Type":"application/json"
+                },
+
+                body:JSON.stringify({
+
+                    age,
+
+                    gender,
+
+                    occupation,
+
+                    income
+
+                })
+
+            }
+        );
+
+        const data = await response.json();
+
+        const container=document.getElementById("recommendContainer");
+
+        if(!container) return;
+
+        if(!data.success){
+
+            container.innerHTML=`
+            <div class="scheme-card">
+
+                <h3>Unable to fetch recommendations.</h3>
+
+            </div>`;
+
+            return;
+
+        }
+
+        if(data.schemes.length===0){
+
+            container.innerHTML=`
+            <div class="scheme-card">
+
+                <h3>No Eligible Schemes Found</h3>
+
+                <p>Please change your details and try again.</p>
+
+            </div>`;
+
+            return;
+
+        }
+
+        let html="";
+
+        data.schemes.forEach((scheme)=>{
+
+            html+=`
+
+            <div class="scheme-card">
+
+                <h3>${scheme.scheme_name}</h3>
+
+                <p>${scheme.description}</p>
+
+                <button
+                    class="primary-btn"
+                    onclick="viewScheme('${scheme.scheme_name}')">
+
+                    View Details
+
+                </button>
+
+            </div>
+
+            `;
+
+        });
+
+        container.innerHTML=html;
+
+    }
+
+    catch(err){
+
+        console.log(err);
+
+        alert("Server Error");
+
+    }
+
 }
 
 function goApply() {
@@ -1444,7 +1597,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const newPassword = document.getElementById("newPassword");
     const confirmPassword = document.getElementById("confirmNewPassword");
 
-    // Profile page இல்லையென்றால் exit
     if (!oldPassword || !newPassword || !confirmPassword) {
         return;
     }
@@ -1486,3 +1638,121 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 });
+
+async function findRecommendedSchemes() {
+
+    try {
+
+        const age = Number(document.getElementById("age").value);
+
+        const gender = document.getElementById("gender").value;
+
+        const occupation = document.getElementById("occupation").value;
+
+        const income = Number(document.getElementById("income").value);
+
+        const response = await fetch("http://localhost:5000/api/recommend", {
+
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+                age,
+                gender,
+                occupation,
+                income
+            })
+
+        });
+
+        const data = await response.json();
+
+        const container = document.getElementById("recommendContainer");
+
+        if (!container) return;
+
+        if (!data.success || data.schemes.length === 0) {
+
+            container.innerHTML = `
+                <div class="no-result">
+                    <h3>No Eligible Schemes Found</h3>
+                </div>
+            `;
+
+            return;
+        }
+
+        let html = "";
+
+        data.schemes.forEach(scheme => {
+
+            html += `
+            <div class="scheme-card">
+
+                <h3>${scheme.scheme_name}</h3>
+
+                <p>${scheme.description}</p>
+
+                <button class="primary-btn"
+                    onclick="viewScheme(${scheme.id})">
+
+                    View Details
+
+                </button>
+
+            </div>
+            `;
+
+        });
+
+        container.innerHTML = html;
+
+    }
+    catch (err) {
+
+        console.error(err);
+
+        alert("Unable to fetch recommendations.");
+
+    }
+
+}             
+
+window.onload=function(){
+
+    if(document.getElementById("welcomeText")){
+
+        const email=localStorage.getItem("email");
+
+        if(!email){
+
+            alert("Please Login First");
+
+            window.location.href="login.html";
+
+            return;
+
+        }
+
+        document.getElementById("welcomeText").innerHTML=
+
+        "Welcome "+(localStorage.getItem("name")||"User")+" 👋";
+
+    }
+
+    if(document.getElementById("schemeContainer")){
+
+        displaySchemes();
+
+    }
+
+    if(document.getElementById("totalCount")){
+
+        loadStatistics();
+
+    }
+
+}
