@@ -1,4 +1,4 @@
-const API_URL = "https://smart-bharat-assistant-project.onrender.com/api/users";
+const API_URL = "https://smart-bharat-assistant-project-v2.onrender.com/api/users";
 
 let schemes = [];
 
