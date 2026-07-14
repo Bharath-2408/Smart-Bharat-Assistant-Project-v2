@@ -2,7 +2,18 @@ const express = require("express");
 const router = express.Router();
 const db = require("../db");
 
+// Test Route
+router.get("/", (req, res) => {
+    res.json({
+        success: true,
+        message: "Recommend GET Working"
+    });
+});
+
+// Recommendation Route
 router.post("/", (req, res) => {
+
+    console.log("Recommendation Request:", req.body);
 
     const {
         age,
@@ -18,7 +29,7 @@ router.post("/", (req, res) => {
         (age_min IS NULL OR age_min <= ?)
         AND (age_max IS NULL OR age_max >= ?)
         AND (gender='Any' OR gender=?)
-        AND (occupation IS NULL OR occupation=?)
+        AND (occupation IS NULL OR occupation=? OR occupation='Any')
         AND (income_limit IS NULL OR income_limit>=?)
     ORDER BY scheme_name
     `;
@@ -29,11 +40,17 @@ router.post("/", (req, res) => {
         (err, results) => {
 
             if (err) {
+
+                console.log(err);
+
                 return res.status(500).json({
                     success: false,
                     message: err.message
                 });
+
             }
+
+            console.log("Recommended Schemes:", results.length);
 
             res.json({
                 success: true,
@@ -44,13 +61,6 @@ router.post("/", (req, res) => {
         }
     );
 
-});
-
-router.get("/", (req, res) => {
-    res.json({
-        success: true,
-        message: "Recommend GET Working"
-    });
 });
 
 module.exports = router;

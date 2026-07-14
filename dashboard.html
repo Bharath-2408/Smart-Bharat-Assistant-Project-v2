@@ -60,54 +60,91 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 <header class="dashboard-navbar">
 
-<div class="dashboard-logo">
+    <!-- Logo -->
 
-<img
-src="images/emblem.png"
-alt="Government Logo">
+    <div class="dashboard-logo">
 
-<div>
+        <img
+            src="images/emblem.png"
+            alt="Government Logo">
 
-<h2>
+        <div>
 
-Smart Bharat
+            <h2>Smart Bharat</h2>
 
-</h2>
+            <span>AI Government Assistant</span>
 
-<span>
+        </div>
 
-AI Government Assistant
+    </div>
 
-</span>
+    <!-- Mobile Menu Button -->
 
-</div>
+    <button
+        class="mobile-menu-btn"
+        onclick="toggleMenu()">
 
-</div>
+        <i class="fa-solid fa-bars"></i>
 
+    </button>
 
-<div class="dashboard-menu">
+    <!-- Navigation -->
 
-<button
-class="status-btn"
-onclick="window.location.href='profile.html'">
+    <div
+        class="dashboard-menu"
+        id="dashboardMenu">
 
-<i class="fa-solid fa-user"></i>
+        <button
+            class="status-btn"
+            onclick="window.location.href='profile.html'">
 
-My Profile
+            <i class="fa-solid fa-user"></i>
 
-</button>
+            My Profile
 
-<button
-class="logout-btn"
-onclick="logout()">
+        </button>
 
-<i class="fa-solid fa-right-from-bracket"></i>
+        <button
+            class="status-btn"
+            onclick="window.location.href='recommend.html'">
 
-Logout
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
 
-</button>
+            Recommend
 
-</div>
+        </button>
+
+        <button
+            class="status-btn"
+            onclick="window.location.href='status.html'">
+
+            <i class="fa-solid fa-chart-line"></i>
+
+            Status
+
+        </button>
+
+        <button
+            class="status-btn"
+            onclick="window.location.href='notifications.html'">
+
+            <i class="fa-solid fa-bell"></i>
+
+            Notifications
+
+        </button>
+
+        <button
+            class="logout-btn"
+            onclick="logout()">
+
+            <i class="fa-solid fa-right-from-bracket"></i>
+
+            Logout
+
+        </button>
+
+    </div>
 
 </header>
 

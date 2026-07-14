@@ -10,26 +10,42 @@ console.log("MYSQLPORT:", process.env.MYSQLPORT);
 console.log("MYSQLUSER:", process.env.MYSQLUSER);
 console.log("MYSQLDATABASE:", process.env.MYSQLDATABASE);
 
-const db = mysql
-    .createPool({
-        host: process.env.MYSQLHOST,
-        port: process.env.MYSQLPORT,
-        user: process.env.MYSQLUSER,
-        password: process.env.MYSQLPASSWORD,
-        database: process.env.MYSQLDATABASE,
-        waitForConnections: true,
-        connectionLimit: 10,
-        queueLimit: 0
-    })
-    .promise();
+const db = mysql.createPool({
 
-db.getConnection()
-    .then((connection) => {
-        console.log("MySQL Connected ✅");
+    host: process.env.MYSQLHOST,
+    port: Number(process.env.MYSQLPORT),
+    user: process.env.MYSQLUSER,
+    password: process.env.MYSQLPASSWORD,
+    database: process.env.MYSQLDATABASE,
+
+    waitForConnections: true,
+    connectionLimit: 20,
+    maxIdle: 20,
+    idleTimeout: 60000,
+    queueLimit: 0,
+
+    enableKeepAlive: true,
+    keepAliveInitialDelay: 0
+
+}).promise();
+
+(async () => {
+
+    try {
+
+        const connection = await db.getConnection();
+
+        console.log("✅ MySQL Connected");
+
         connection.release();
-    })
-    .catch((err) => {
-        console.log("Database Error:", err);
-    });
+
+    } catch (err) {
+
+        console.log("❌ Database Error");
+        console.log(err);
+
+    }
+
+})();
 
 module.exports = db;

@@ -138,6 +138,9 @@ async function registerUser() {
 // ================= USER LOGIN =================
 async function loginUser() {
 
+    const btn =
+        document.querySelector(".login-box button[type='submit']");
+
     try {
 
         const email =
@@ -165,12 +168,12 @@ async function loginUser() {
 
         }
 
-        // Login Button Loading
-        const btn =
-            document.querySelector(".login-box button[type='submit']");
-
+        // Disable Button
         btn.disabled = true;
-        btn.innerHTML = "⏳ Logging In...";
+        btn.innerHTML =
+            '<i class="fa-solid fa-spinner fa-spin"></i> Logging In...';
+
+        console.time("Login API");
 
         const response = await fetch(
             `${API_URL}/login`,
@@ -186,6 +189,8 @@ async function loginUser() {
             }
         );
 
+        console.timeEnd("Login API");
+
         const data = await response.json();
 
         if (response.ok && data.message === "Login Successful") {
@@ -195,17 +200,23 @@ async function loginUser() {
             localStorage.setItem("phone", data.phone);
             localStorage.setItem("token", data.token);
 
-            showToast("Welcome Back, " + data.name + " 👋", "success");
+            showToast(
+                `Welcome Back, ${data.name} 👋`,
+                "success"
+            );
 
             setTimeout(() => {
 
                 window.location.href = "dashboard.html";
 
-            }, 1500);
+            }, 1200);
 
         } else {
 
-            showToast(data.message, "error");
+            showToast(
+                data.message || "Invalid Email or Password",
+                "error"
+            );
 
             btn.disabled = false;
             btn.innerHTML = "Login";
@@ -214,12 +225,12 @@ async function loginUser() {
 
     } catch (err) {
 
-        console.log(err);
+        console.error(err);
 
-        showToast("Server Error", "error");
-
-        const btn =
-            document.querySelector(".login-box button[type='submit']");
+        showToast(
+            "Unable to connect to server",
+            "error"
+        );
 
         btn.disabled = false;
         btn.innerHTML = "Login";
@@ -1641,118 +1652,174 @@ document.addEventListener("DOMContentLoaded", function () {
 
 async function findRecommendedSchemes() {
 
+    const age = document.getElementById("age").value;
+    const gender = document.getElementById("gender").value;
+    const occupation = document.getElementById("occupation").value;
+    const income = document.getElementById("income").value;
+
+    if (!age || !income) {
+
+        alert("Please fill all fields");
+
+        return;
+
+    }
+
+    document.getElementById("loadingBox").style.display = "block";
+
+    document.getElementById("recommendContainer").innerHTML = "";
+
     try {
 
-        const age = Number(document.getElementById("age").value);
+        const response = await fetch(
+            "http://localhost:5000/api/recommend",
+            {
+                method: "POST",
 
-        const gender = document.getElementById("gender").value;
+                headers: {
+                    "Content-Type": "application/json"
+                },
 
-        const occupation = document.getElementById("occupation").value;
+                body: JSON.stringify({
 
-        const income = Number(document.getElementById("income").value);
+                    age: Number(age),
 
-        const response = await fetch("http://localhost:5000/api/recommend", {
+                    gender,
 
-            method: "POST",
+                    occupation,
 
-            headers: {
-                "Content-Type": "application/json"
-            },
+                    income: Number(income)
 
-            body: JSON.stringify({
-                age,
-                gender,
-                occupation,
-                income
-            })
+                })
 
-        });
+            }
+        );
 
         const data = await response.json();
 
-        const container = document.getElementById("recommendContainer");
+        document.getElementById("loadingBox").style.display = "none";
 
-        if (!container) return;
+        if (data.success) {
 
-        if (!data.success || data.schemes.length === 0) {
+            displayRecommendedSchemes(data.schemes);
 
-            container.innerHTML = `
-                <div class="no-result">
-                    <h3>No Eligible Schemes Found</h3>
-                </div>
-            `;
-
-            return;
         }
 
-        let html = "";
+        else {
 
-        data.schemes.forEach(scheme => {
+            alert(data.message);
 
-            html += `
-            <div class="scheme-card">
+        }
 
-                <h3>${scheme.scheme_name}</h3>
+    }
 
-                <p>${scheme.description}</p>
+catch (err) {
 
-                <button class="primary-btn"
-                    onclick="viewScheme(${scheme.id})">
+    console.error("Fetch Error:", err);
+
+    document.getElementById("loadingBox").style.display = "none";
+
+    alert(err.message);
+
+    }
+
+}
+
+function displayRecommendedSchemes(list) {
+
+    const container =
+        document.getElementById("recommendContainer");
+
+    if (list.length === 0) {
+
+        container.innerHTML = `
+
+        <div class="no-result">
+
+            <i class="fa-solid fa-circle-xmark"></i>
+
+            <h2>
+
+                No Eligible Schemes Found
+
+            </h2>
+
+            <p>
+
+                Please change your details and try again.
+
+            </p>
+
+        </div>
+
+        `;
+
+        return;
+
+    }
+
+    let html = "";
+
+    list.forEach((scheme) => {
+
+        html += `
+
+        <div class="scheme-card">
+
+            <div class="scheme-status">
+
+                <i class="fa-solid fa-circle-check"></i>
+
+                Eligible
+
+            </div>
+
+            <h3>
+
+                ${scheme.scheme_name}
+
+            </h3>
+
+            <p>
+
+                ${scheme.description}
+
+            </p>
+
+            <div class="scheme-buttons">
+
+                <button
+                class="view-btn"
+                onclick="viewScheme('${scheme.scheme_name}')">
 
                     View Details
 
                 </button>
 
+                <button
+                class="apply-btn"
+                onclick="selectScheme('${scheme.scheme_name}')">
+
+                    Apply Now
+
+                </button>
+
             </div>
-            `;
 
-        });
+        </div>
 
-        container.innerHTML = html;
+        `;
 
-    }
-    catch (err) {
+    });
 
-        console.error(err);
+    container.innerHTML = html;
 
-        alert("Unable to fetch recommendations.");
+}
 
-    }
+function toggleMenu() {
 
-}             
+    const menu = document.getElementById("dashboardMenu");
 
-window.onload=function(){
-
-    if(document.getElementById("welcomeText")){
-
-        const email=localStorage.getItem("email");
-
-        if(!email){
-
-            alert("Please Login First");
-
-            window.location.href="login.html";
-
-            return;
-
-        }
-
-        document.getElementById("welcomeText").innerHTML=
-
-        "Welcome "+(localStorage.getItem("name")||"User")+" 👋";
-
-    }
-
-    if(document.getElementById("schemeContainer")){
-
-        displaySchemes();
-
-    }
-
-    if(document.getElementById("totalCount")){
-
-        loadStatistics();
-
-    }
+    menu.classList.toggle("showMenu");
 
 }

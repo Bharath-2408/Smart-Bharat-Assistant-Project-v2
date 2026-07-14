@@ -119,29 +119,36 @@ router.post(
 );
 
 // ================= USER LOGIN =================
-router.post("/login", (req, res) => {
-    const { email, password } = req.body;
+router.post("/login", async (req, res) => {
 
-    const sql = "SELECT * FROM users WHERE email=?";
+    try {
 
-    db.query(sql, [email], async (err, result) => {
-        if (err || result.length === 0) {
+        const { email, password } = req.body;
+
+        const sql =
+            "SELECT * FROM users WHERE email = ? LIMIT 1";
+
+        const [rows] = await db.query(sql, [email]);
+
+        if (rows.length === 0) {
+
             return res.status(400).json({
                 message: "Invalid Credentials"
             });
+
         }
 
-        const user = result[0];
+        const user = rows[0];
 
-        const isMatch = await bcrypt.compare(
-            password,
-            user.password
-        );
+        const isMatch =
+            await bcrypt.compare(password, user.password);
 
         if (!isMatch) {
+
             return res.status(400).json({
                 message: "Invalid Credentials"
             });
+
         }
 
         const token = jwt.sign(
@@ -155,14 +162,34 @@ router.post("/login", (req, res) => {
             }
         );
 
-        res.json({
+        return res.status(200).json({
+
             message: "Login Successful",
+
             token,
+
             name: user.name,
+
             email: user.email,
+
             phone: user.phone
+
         });
-    });
+
+    }
+
+    catch (err) {
+
+        console.log(err);
+
+        return res.status(500).json({
+
+            message: "Server Error"
+
+        });
+
+    }
+
 });
 
 // ================= APPLY SCHEME =================
