@@ -1,0 +1,9 @@
+# ======================================================
+# Smart Bharath Assistant - robots.txt
+# ======================================================
+
+User-agent: *
+
+Allow: /
+
+Sitemap: https://bharath-2408.github.io/Smart-Bharat-Assistant-Project-v2/sitemap.xml

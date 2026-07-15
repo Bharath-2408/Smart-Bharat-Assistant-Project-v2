@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+    <!-- Home Page -->
+    <url>
+        <loc>https://bharath-2408.github.io/Smart-Bharat-Assistant-Project-v2/</loc>
+        <lastmod>2026-07-15</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
+
+    <!-- Login -->
+    <url>
+        <loc>https://bharath-2408.github.io/Smart-Bharat-Assistant-Project-v2/login.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Register -->
+    <url>
+        <loc>https://bharath-2408.github.io/Smart-Bharat-Assistant-Project-v2/register.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Dashboard -->
+    <url>
+        <loc>https://bharath-2408.github.io/Smart-Bharat-Assistant-Project-v2/dashboard.html</loc>
+        <changefreq>daily</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- Chatbot -->
+    <url>
+        <loc>https://bharath-2408.github.io/Smart-Bharat-Assistant-Project-v2/chatbot.html</loc>
+        <changefreq>daily</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- Application -->
+    <url>
+        <loc>https://bharath-2408.github.io/Smart-Bharat-Assistant-Project-v2/application.html</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Notifications -->
+    <url>
+        <loc>https://bharath-2408.github.io/Smart-Bharat-Assistant-Project-v2/notifications.html</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Profile -->
+    <url>
+        <loc>https://bharath-2408.github.io/Smart-Bharat-Assistant-Project-v2/profile.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Status -->
+    <url>
+        <loc>https://bharath-2408.github.io/Smart-Bharat-Assistant-Project-v2/status.html</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Scheme Details -->
+    <url>
+        <loc>https://bharath-2408.github.io/Smart-Bharat-Assistant-Project-v2/scheme-details.html</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+</urlset>
