@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
     <url>
@@ -9,40 +8,44 @@
         <priority>1.0</priority>
     </url>
 
-    <url>
-        <loc>https://bharath-2408.github.io/Smart-Bharat-Assistant-Project-v2/login.html</loc>
-    </url>
+  <url>
+    <loc>https://bharath-2408.github.io/Smart-Bharat-Assistant-Project-v2/</loc>
+  </url>
 
-    <url>
-        <loc>https://bharath-2408.github.io/Smart-Bharat-Assistant-Project-v2/register.html</loc>
-    </url>
+  <url>
+    <loc>https://bharath-2408.github.io/Smart-Bharat-Assistant-Project-v2/login.html</loc>
+  </url>
 
-    <url>
-        <loc>https://bharath-2408.github.io/Smart-Bharat-Assistant-Project-v2/dashboard.html</loc>
-    </url>
+  <url>
+    <loc>https://bharath-2408.github.io/Smart-Bharat-Assistant-Project-v2/register.html</loc>
+  </url>
 
-    <url>
-        <loc>https://bharath-2408.github.io/Smart-Bharat-Assistant-Project-v2/chatbot.html</loc>
-    </url>
+  <url>
+    <loc>https://bharath-2408.github.io/Smart-Bharat-Assistant-Project-v2/dashboard.html</loc>
+  </url>
 
-    <url>
-        <loc>https://bharath-2408.github.io/Smart-Bharat-Assistant-Project-v2/profile.html</loc>
-    </url>
+  <url>
+    <loc>https://bharath-2408.github.io/Smart-Bharat-Assistant-Project-v2/chatbot.html</loc>
+  </url>
 
-    <url>
-        <loc>https://bharath-2408.github.io/Smart-Bharat-Assistant-Project-v2/application.html</loc>
-    </url>
+  <url>
+    <loc>https://bharath-2408.github.io/Smart-Bharat-Assistant-Project-v2/profile.html</loc>
+  </url>
 
-    <url>
-        <loc>https://bharath-2408.github.io/Smart-Bharat-Assistant-Project-v2/notifications.html</loc>
-    </url>
+  <url>
+    <loc>https://bharath-2408.github.io/Smart-Bharat-Assistant-Project-v2/application.html</loc>
+  </url>
 
-    <url>
-        <loc>https://bharath-2408.github.io/Smart-Bharat-Assistant-Project-v2/status.html</loc>
-    </url>
+  <url>
+    <loc>https://bharath-2408.github.io/Smart-Bharat-Assistant-Project-v2/notifications.html</loc>
+  </url>
 
-    <url>
-        <loc>https://bharath-2408.github.io/Smart-Bharat-Assistant-Project-v2/scheme-details.html</loc>
-    </url>
+  <url>
+    <loc>https://bharath-2408.github.io/Smart-Bharat-Assistant-Project-v2/status.html</loc>
+  </url>
+
+  <url>
+    <loc>https://bharath-2408.github.io/Smart-Bharat-Assistant-Project-v2/scheme-details.html</loc>
+  </url>
 
 </urlset>
