@@ -11,3 +11,6 @@
 ## Future Roadmap
 
 ## License
+
+## Latest Update
+- Improved backend stability and database connectivity.
