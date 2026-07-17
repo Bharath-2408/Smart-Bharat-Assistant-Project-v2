@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 
 console.log("Backend starting...");
+console.log("🤖 Smart Bharat Assistant Backend Initialized Successfully");
 
 require("dotenv").config();
 require("./db");
