@@ -2,6 +2,11 @@ const API_URL = "https://smart-bharat-assistant-project-v2.onrender.com/api/user
 
 const CHAT_API = "http://localhost:5000/api/chat";
 
+const sessionId =
+    localStorage.getItem("chatSession") || crypto.randomUUID();
+
+localStorage.setItem("chatSession", sessionId);
+
 let schemes = [];
 
 async function loadSchemes() {
@@ -1837,9 +1842,13 @@ async function sendMessage() {
     if (!input || !chatBox) return;
 
     const message = input.value.trim();
+
     if (!message) return;
 
-    // User message
+    // Stop previous voice if speaking
+    speechSynthesis.cancel();
+
+    // User Message
     chatBox.innerHTML += `
         <div class="user-message">
             <div class="message">${message}</div>
@@ -1847,9 +1856,10 @@ async function sendMessage() {
     `;
 
     input.value = "";
+
     chatBox.scrollTop = chatBox.scrollHeight;
 
-    // Loading message
+    // Loading Message
     chatBox.innerHTML += `
         <div class="bot-message" id="loadingMessage">
             <div class="bot-icon">🤖</div>
@@ -1860,28 +1870,46 @@ async function sendMessage() {
     chatBox.scrollTop = chatBox.scrollHeight;
 
     try {
+
         const response = await fetch(CHAT_API, {
+
             method: "POST",
+
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ message })
+
+            body: JSON.stringify({
+                message,
+                sessionId
+            })
+
         });
 
         const data = await response.json();
 
+        if (data.reply) {
+    speak(data.reply);
+}
+
         document.getElementById("loadingMessage")?.remove();
+
+        const reply = data.reply || "No response from AI.";
 
         chatBox.innerHTML += `
             <div class="bot-message">
                 <div class="bot-icon">🤖</div>
-                <div class="message">${data.reply || "No response from AI."}</div>
+                <div class="message">${reply}</div>
             </div>
         `;
 
         chatBox.scrollTop = chatBox.scrollHeight;
 
+        // Speak AI Reply
+        speak(reply);
+
     } catch (error) {
+
         console.error("Chat Error:", error);
 
         document.getElementById("loadingMessage")?.remove();
@@ -1896,7 +1924,9 @@ async function sendMessage() {
         `;
 
         chatBox.scrollTop = chatBox.scrollHeight;
+
     }
+
 }
 
 function handleEnter(event) {
@@ -1904,3 +1934,115 @@ function handleEnter(event) {
         sendMessage();
     }
 }
+
+let recognition;
+
+function startVoice() {
+
+    if (!('webkitSpeechRecognition' in window)) {
+
+        alert("Speech Recognition is not supported.");
+
+        return;
+
+    }
+
+    recognition = new webkitSpeechRecognition();
+
+    recognition.lang = "en-IN";
+
+    recognition.continuous = false;
+
+    recognition.interimResults = false;
+
+    const mic = document.getElementById("micBtn");
+
+    mic.classList.add("listening");
+
+    recognition.start();
+
+    recognition.onresult = function(event){
+
+        const text = event.results[0][0].transcript;
+
+        document.getElementById("userMessage").value = text;
+
+        sendMessage();
+
+    }
+
+    recognition.onend=function(){
+
+        mic.classList.remove("listening");
+
+    }
+
+    recognition.onerror=function(){
+
+        mic.classList.remove("listening");
+
+    }
+
+}
+
+function speak(text){
+
+    speechSynthesis.cancel();
+
+    const speech = new SpeechSynthesisUtterance(text);
+
+    speech.lang = "en-IN";
+
+    speech.rate = 1;
+
+    speech.pitch = 1;
+
+    speech.volume = 1;
+
+    speechSynthesis.speak(speech);
+
+}
+
+/* ==========================================
+   AI Voice Reply
+========================================== */
+
+let voiceEnabled = true;
+
+function speak(text) {
+
+    if (!voiceEnabled) return;
+
+    if (!("speechSynthesis" in window)) {
+        console.log("Speech Synthesis Not Supported");
+        return;
+    }
+
+    speechSynthesis.cancel();
+
+    const utterance = new SpeechSynthesisUtterance(text);
+
+    utterance.lang = "en-IN";
+    utterance.rate = 1;
+    utterance.pitch = 1;
+    utterance.volume = 1;
+
+    const voices = speechSynthesis.getVoices();
+
+    const indianVoice =
+        voices.find(v => v.lang === "en-IN") ||
+        voices.find(v => v.lang.startsWith("en"));
+
+    if (indianVoice)
+        utterance.voice = indianVoice;
+
+    speechSynthesis.speak(utterance);
+}
+
+window.speechSynthesis.onvoiceschanged = () => {
+    speechSynthesis.getVoices();
+};
+
+window.addEventListener("beforeunload", () => {
+    speechSynthesis.cancel();
+});

@@ -1,304 +1,293 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
-<title>
+    <title>AI Smart Bharat Assistant</title>
 
-AI Smart Bharat Assistant
+    <link rel="stylesheet" href="style.css">
 
-</title>
+    <link rel="preconnect"
+        href="https://fonts.googleapis.com">
 
-<link rel="stylesheet"
-href="style.css">
+    <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
 
-<link rel="preconnect"
-href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
 
-<link rel="preconnect"
-href="https://fonts.gstatic.com"
-crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
-rel="stylesheet">
-
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
 </head>
 
 <body>
 
-<div class="chat-page">
+    <div class="chat-page">
 
-<div class="chat-bg">
+        <div class="chat-bg">
 
-<div class="blob one"></div>
+            <div class="blob one"></div>
+            <div class="blob two"></div>
+            <div class="blob three"></div>
 
-<div class="blob two"></div>
+        </div>
 
-<div class="blob three"></div>
+        <header class="chat-navbar">
 
-</div>
+            <div class="chat-logo">
 
-<header class="chat-navbar">
+                <img src="images/emblem.png"
+                    alt="Government Logo">
 
-<div class="chat-logo">
+                <div>
 
-<img
-src="images/emblem.png"
-alt="Government Logo">
+                    <h2>Smart Bharat Assistant</h2>
 
-<div>
+                    <span>AI Powered Government Help Desk</span>
 
-<h2>
+                </div>
 
-Smart Bharat Assistant
+            </div>
 
-</h2>
+            <button class="secondary-btn"
+                onclick="window.location.href='dashboard.html'">
 
-<span>
+                <i class="fa-solid fa-arrow-left"></i>
 
-AI Powered Government Help Desk
+                Dashboard
 
-</span>
+            </button>
 
-</div>
+        </header>
 
-</div>
+        <section class="chat-hero">
 
-<button
+            <div class="ai-avatar">
 
-class="secondary-btn"
+                <i class="fa-solid fa-robot"></i>
 
-onclick="window.location.href='dashboard.html'">
+            </div>
 
-<i class="fa-solid fa-arrow-left"></i>
+            <h1>AI Smart Assistant</h1>
 
-Dashboard
+            <p>
 
-</button>
+                Ask anything about Government Schemes,
+                Eligibility, Documents,
+                Application Process and Benefits.
 
-</header>
+            </p>
 
-<section class="chat-hero">
+        </section>
 
-<div class="ai-avatar">
+        <section class="chat-section">
 
-<i class="fa-solid fa-robot"></i>
+            <div class="chat-card">
 
-</div>
+                <div class="chat-header">
 
-<h1>
+                    <h2>
 
-AI Smart Assistant
+                        <i class="fa-solid fa-comments"></i>
 
-</h1>
+                        Start Conversation
 
-<p>
+                    </h2>
 
-Ask anything about Government Schemes,
-Eligibility, Documents,
-Application Process and Benefits.
+                    <p>
 
-</p>
+                        Powered by Smart Bharat AI Assistant
 
-</section>
+                    </p>
 
-<section class="chat-section">
+                </div>
 
-<div class="chat-card">
+                <!-- Chat Box -->
 
-<div class="chat-header">
+                <div id="chatBox"
+                    class="chat-box">
 
-<h2>
+                    <div class="bot-message">
 
-<i class="fa-solid fa-comments"></i>
+                        <div class="bot-icon">
 
-Start Conversation
+                            🤖
 
-</h2>
+                        </div>
 
-<p>
+                        <div class="message">
 
-Powered by Smart Bharat AI Assistant
+                            Hello 👋
 
-</p>
+                            <br><br>
 
-</div>
+                            I can help you with
 
-<div
-id="chatBox"
-class="chat-box">
+                            <br>
 
-<div class="bot-message">
+                            ✅ Scholarship Schemes
 
-<div class="bot-icon">
+                            <br>
 
-🤖
+                            ✅ Farmer Schemes
 
-</div>
+                            <br>
 
-<div class="message">
+                            ✅ Women Welfare
 
-Hello 👋
+                            <br>
 
-<br><br>
+                            ✅ Pension
 
-I can help you with
+                            <br>
 
-<br>
+                            ✅ PM Kisan
 
-✅ Scholarship Schemes
+                            <br>
 
-<br>
+                            ✅ Government Benefits
 
-✅ Farmer Schemes
+                        </div>
 
-<br>
+                    </div>
 
-✅ Women Welfare
+                </div>
 
-<br>
-
-✅ Pension
-
-<br>
-
-✅ PM Kisan
-
-<br>
-
-✅ Government Benefits
-
-</div>
-
-</div>
-
-</div>
+<!-- Chat Input -->
 
 <div class="chat-input-area">
 
-    <div class="input-wrapper">
+    <input
+        type="text"
+        id="userMessage"
+        placeholder="🎤 Ask about any Government Scheme..."
+        onkeypress="handleEnter(event)"
+        autocomplete="off">
 
-<input
-type="text"
-id="userMessage"
-placeholder="Type your question here..."
-required
-onkeypress="handleEnter(event)">
+    <button
+        id="micBtn"
+        class="mic-btn"
+        type="button"
+        title="Voice Search"
+        onclick="startVoice()">
 
-<button
-class="send-btn"
-onclick="sendMessage()">
+        <i class="fa-solid fa-microphone"></i>
 
-<i class="fa-solid fa-paper-plane"></i>
+    </button>
 
-Send
+    <button
+        class="send-btn"
+        type="button"
+        onclick="sendMessage()">
 
-</button>
+        <i class="fa-solid fa-paper-plane"></i>
 
-</div>
+        Send
 
-<div class="quick-actions">
+    </button>
 
-<button
-onclick="document.getElementById('userMessage').value='Scholarship Schemes';sendMessage();">
+</div> 
 
-🎓 Scholarship
+                <!-- Quick Buttons -->
 
-</button>
+                <div class="quick-actions">
 
-<button
-onclick="document.getElementById('userMessage').value='PM Kisan Scheme';sendMessage();">
+                    <button
+                        onclick="document.getElementById('userMessage').value='Scholarship Schemes';sendMessage();">
 
-🌾 PM Kisan
+                        🎓 Scholarship
 
-</button>
+                    </button>
 
-<button
-onclick="document.getElementById('userMessage').value='Women Welfare Schemes';sendMessage();">
+                    <button
+                        onclick="document.getElementById('userMessage').value='PM Kisan Scheme';sendMessage();">
 
-👩 Women
+                        🌾 PM Kisan
 
-</button>
+                    </button>
 
-<button
-onclick="document.getElementById('userMessage').value='Old Age Pension';sendMessage();">
+                    <button
+                        onclick="document.getElementById('userMessage').value='Women Welfare Schemes';sendMessage();">
 
-👴 Pension
+                        👩 Women
 
-</button>
+                    </button>
 
-</div>
+                    <button
+                        onclick="document.getElementById('userMessage').value='Old Age Pension';sendMessage();">
 
-<div class="chat-footer">
+                        👴 Pension
 
-<button
-class="secondary-btn"
-onclick="window.location.href='dashboard.html'">
+                    </button>
 
-<i class="fa-solid fa-arrow-left"></i>
+                </div>
 
-Back to Dashboard
+                <!-- Footer -->
 
-</button>
+                <div class="chat-footer">
 
-</div>
+                    <button
+                        class="secondary-btn"
+                        onclick="window.location.href='dashboard.html'">
 
-</div>
+                        <i class="fa-solid fa-arrow-left"></i>
 
-</section>
+                        Back to Dashboard
 
-</div>
+                    </button>
 
-<script src="script.js"></script>
+                </div>
 
-<script>
+            </div>
 
-/* Login Check */
+        </section>
 
-if (!localStorage.getItem("email")){
+    </div>
 
-alert("Please Login First");
+    <script src="script.js"></script>
 
-window.location.href="login.html";
+    <script>
 
-}
+        if (!localStorage.getItem("email")) {
 
-/* Press Enter */
+            alert("Please Login First");
 
-function handleEnter(event){
+            window.location.href = "login.html";
 
-if(event.key==="Enter"){
+        }
 
-sendMessage();
+        function handleEnter(event) {
 
-}
+            if (event.key === "Enter") {
 
-}
+                sendMessage();
 
-</script>
+            }
 
-<!-- Toast Notification -->
+        }
 
-<div id="toast" class="toast">
+    </script>
 
-<span id="toastIcon">✔</span>
+    <!-- Toast -->
 
-<p id="toastMessage">
+    <div id="toast" class="toast">
 
-Success
+        <span id="toastIcon">✔</span>
 
-</p>
+        <p id="toastMessage">
 
-</div>
+            Success
+
+        </p>
+
+    </div>
 
 </body>
 
