@@ -1,5 +1,7 @@
 const API_URL = "https://smart-bharat-assistant-project-v2.onrender.com/api/users";
 
+const CHAT_API = "http://localhost:5000/api/chat";
+
 let schemes = [];
 
 async function loadSchemes() {
@@ -1822,4 +1824,83 @@ function toggleMenu() {
 
     menu.classList.toggle("showMenu");
 
+}
+/* =====================================================
+   SMART BHARAT AI CHAT
+===================================================== */
+
+async function sendMessage() {
+
+    const input = document.getElementById("userMessage");
+    const chatBox = document.getElementById("chatBox");
+
+    if (!input || !chatBox) return;
+
+    const message = input.value.trim();
+    if (!message) return;
+
+    // User message
+    chatBox.innerHTML += `
+        <div class="user-message">
+            <div class="message">${message}</div>
+        </div>
+    `;
+
+    input.value = "";
+    chatBox.scrollTop = chatBox.scrollHeight;
+
+    // Loading message
+    chatBox.innerHTML += `
+        <div class="bot-message" id="loadingMessage">
+            <div class="bot-icon">🤖</div>
+            <div class="message">Thinking...</div>
+        </div>
+    `;
+
+    chatBox.scrollTop = chatBox.scrollHeight;
+
+    try {
+        const response = await fetch(CHAT_API, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ message })
+        });
+
+        const data = await response.json();
+
+        document.getElementById("loadingMessage")?.remove();
+
+        chatBox.innerHTML += `
+            <div class="bot-message">
+                <div class="bot-icon">🤖</div>
+                <div class="message">${data.reply || "No response from AI."}</div>
+            </div>
+        `;
+
+        chatBox.scrollTop = chatBox.scrollHeight;
+
+    } catch (error) {
+        console.error("Chat Error:", error);
+
+        document.getElementById("loadingMessage")?.remove();
+
+        chatBox.innerHTML += `
+            <div class="bot-message">
+                <div class="bot-icon">❌</div>
+                <div class="message">
+                    Unable to connect to AI server.
+                </div>
+            </div>
+        `;
+
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }
+}
+
+function handleEnter(event) {
+    if (event.key === "Enter") {
+        sendMessage();
+    }
 }

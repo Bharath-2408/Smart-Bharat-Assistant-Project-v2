@@ -1,16 +1,5 @@
-# Smart Bharat Assistant v2
+# Smart Bharat Assistant 
 
-## Overview
+## Live Demo
 
-## Features
-
-## Tech Stack
-
-## Project Structure
-
-## Future Roadmap
-
-## License
-
-## Latest Update
-- Improved backend stability and database connectivity.
+https://bharath-2408.github.io/Smart-Bharat-Assistant-Project-v2/
