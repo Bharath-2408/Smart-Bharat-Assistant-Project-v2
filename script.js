@@ -2,6 +2,8 @@ const API_URL = "https://smart-bharat-assistant-project-v2.onrender.com/api/user
 
 const CHAT_API = "http://localhost:5000/api/chat";
 
+const email = localStorage.getItem("email") || "guest";
+
 const sessionId =
     localStorage.getItem("chatSession") || crypto.randomUUID();
 
@@ -1845,7 +1847,7 @@ async function sendMessage() {
 
     if (!message) return;
 
-    // Stop previous voice if speaking
+    // Stop previous speech
     speechSynthesis.cancel();
 
     // User Message
@@ -1859,7 +1861,7 @@ async function sendMessage() {
 
     chatBox.scrollTop = chatBox.scrollHeight;
 
-    // Loading Message
+    // Loading
     chatBox.innerHTML += `
         <div class="bot-message" id="loadingMessage">
             <div class="bot-icon">🤖</div>
@@ -1880,21 +1882,37 @@ async function sendMessage() {
             },
 
             body: JSON.stringify({
+
+                email,
                 message,
                 sessionId
+
             })
 
         });
 
         const data = await response.json();
 
-        if (data.reply) {
-    speak(data.reply);
-}
-
         document.getElementById("loadingMessage")?.remove();
 
-        const reply = data.reply || "No response from AI.";
+        let reply = data.reply || "No response from AI.";
+
+        // Escape HTML
+        reply = reply
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;");
+
+        // Convert URLs into clickable links
+        reply = reply.replace(
+            /(https?:\/\/[^\s]+)/g,
+            '<a href="$1" target="_blank">$1</a>'
+        );
+
+        // Preserve line breaks
+        reply = reply.replace(/\n/g, "<br>");
+
+        // Replace bullets
+        reply = reply.replace(/•/g, "🔹 ");
 
         chatBox.innerHTML += `
             <div class="bot-message">
@@ -1905,8 +1923,10 @@ async function sendMessage() {
 
         chatBox.scrollTop = chatBox.scrollHeight;
 
-        // Speak AI Reply
-        speak(reply);
+        // Speak only once
+        if (data.reply) {
+            speak(data.reply);
+        }
 
     } catch (error) {
 

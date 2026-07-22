@@ -1,8 +1,11 @@
 const express = require("express");
 const cors = require("cors");
+const memoryRoutes = require("./routes/memory");
 require("dotenv").config();
 
 console.log("🚀 Smart Bharat Assistant Backend Starting...");
+
+console.log("🧠 Memory API Loaded");
 
 // Database Connection
 require("./db");
@@ -51,6 +54,8 @@ app.use("/api/schemes", schemeRoutes);
 app.use("/api/recommend", recommendRoutes);
 
 app.use("/api/chat", chatRoutes);
+
+app.use("/api/memory", memoryRoutes);
 
 /* ==========================================
    404 Handler (Express 5 Compatible)

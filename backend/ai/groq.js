@@ -1,13 +1,3 @@
-const Groq = require("groq-sdk");
-
-const groq = new Groq({
-    apiKey: process.env.GROQ_API_KEY
-});
-
-/* ==========================================
-   Smart Bharat AI
-========================================== */
-
 async function askGroq(messages) {
 
     try {
@@ -18,13 +8,37 @@ async function askGroq(messages) {
 
             messages,
 
-            temperature: 0.5,
+            temperature: 0.3,
 
-            max_tokens: 500
+            max_tokens: 800,
+
+            top_p: 0.9,
+
+            frequency_penalty: 0.2,
+
+            presence_penalty: 0.1
 
         });
 
-        return completion.choices[0].message.content;
+        let reply = completion.choices[0].message.content || "";
+
+        /* ==========================================
+           Improve Readability
+        ========================================== */
+
+        reply = reply
+
+            .replace(/\r/g, "")
+
+            .replace(/\n{3,}/g, "\n\n")
+
+            .replace(/•/g, "• ")
+
+            .replace(/^\-\s/gm, "• ")
+
+            .trim();
+
+        return reply;
 
     }
 
@@ -40,5 +54,3 @@ async function askGroq(messages) {
     }
 
 }
-
-module.exports = askGroq;
